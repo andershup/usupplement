@@ -68,6 +68,9 @@ See wireframes.
 
 ### Technologies used
 
+* Django
+*
+
 ### Testing
 
 ### development
