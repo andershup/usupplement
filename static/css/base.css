@@ -1,0 +1,83 @@
+html {
+    height: 100%
+}
+
+body {
+    background: url('/media/capsules.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: calc(100vh - 164px); /*164 is the eventual height of our top header */
+    color: gray; /*default font colour and family for body */
+    font-family: 'Sansita Swashed', cursive;
+
+}
+
+/* from Bulma as this will ensure that all font awsome stays centered and consistent size*/
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+/* end of Bulma */
+/* for whenever we want to call attention to something */
+.logo-font {
+    text-transform: uppercase;
+}
+/* ensures logo only takes up as much space as required */
+.main-logo-link {
+    width: fit-content;
+}
+
+.shop-now-button {
+    background: black;
+    color: white;
+    min-width: 260px;
+}
+
+.btn-black {
+    background: black;
+    color: white;
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+    background: #222;
+    color: white;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+.border-black {
+    border: 1px solid black !important;
+}
+
+.tt-black {
+    background-color: black !important; /*use this for id=topnav in base.html, not working*/
+}
+
+/* -------------------------------- Media Queries */
+
+
+
+/* fixed top navbar only on medium and up */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 164px; /*again this is for the main page header height */
+    }
+}
