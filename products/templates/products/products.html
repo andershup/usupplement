@@ -26,11 +26,13 @@
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                             <div class="card h-100 border-0">
                                 {% if product.image %}
-                                <a href="">
+                                <a href="{% url 'product_detail' product.id %}">
+                                    <!--product.id not _id because in template we are working with django object _id in the veiw-->
+                                    <!--using bootstrap card and classes--><!-- using the image field's url attribute if exists-->
                                     <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                                 </a>
                                 {% else %}
-                                <a href="">
+                                <a href="{% url 'product_detail' product.id %}"> <!--we still want even if dont have image-->
                                     <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                 </a>
                                 {% endif %}
@@ -51,22 +53,23 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- if forloop.counter copied from Code Institute lesson-->
                         {% if forloop.counter|divisibleby:1 %}
-                            <div class="col-12 d-sm-none mb-5">
-                                <hr>
+                            <div class="col-12 d-sm-none mb-5"> <!--mobile-->
+                                <hr> <!--adding seperator-->
                             </div>
                         {% endif %}                        
-                        {% if forloop.counter|divisibleby:2 %}
+                        {% if forloop.counter|divisibleby:2 %} <!--tablet-->
                             <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
                                 <hr>
                             </div>
                         {% endif %}
-                        {% if forloop.counter|divisibleby:3 %}
+                        {% if forloop.counter|divisibleby:3 %} <!--desktop-->
                             <div class="col-12 d-none d-lg-block d-xl-none mb-5">
                                 <hr>
                             </div>
                         {% endif %}
-                        {% if forloop.counter|divisibleby:4 %}
+                        {% if forloop.counter|divisibleby:4 %} <!--you could make this one the desktop for four in a row-->
                             <div class="col-12 d-none d-xl-block mb-5">
                                 <hr>
                             </div>

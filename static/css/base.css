@@ -93,3 +93,14 @@ body {
         padding-top: 164px; /*again this is for the main page header height */
     }
 }
+
+/* pad the top a bit when navbar is collapsed on mobile. This was copied from Code Institute lesson*/
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 116px;
+    }
+
+    body {
+        height: calc(100vh - 116px);
+    }
+}
