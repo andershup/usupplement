@@ -7,7 +7,7 @@ class ProductAdmin(admin.ModelAdmin):
     """Class which will extend the built in model admin class"""
     list_display = (
     # List display attribute as a tuple to tell admin which fields to display
-    # Column order in admin can be changed here
+    # Column order in admin can be changed here***
         'name',
         'category',
         'sku',
@@ -15,7 +15,7 @@ class ProductAdmin(admin.ModelAdmin):
         'rating',
         'image',
     )
-    # Ordering attribute tuple to sort by 'sku'
+    # Ordering attribute tuple to sort by 'name'***
     ordering = ('name',)
 
 

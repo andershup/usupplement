@@ -63,6 +63,18 @@ body {
     background-color: black !important; /*use this for id=topnav in base.html, not working*/
 }
 
+/* copied from CI lesson */
+/* placed in base so we can use accross site */
+.overlay {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: white;
+	z-index: -1; /*so sits behins all the content*/
+}
+
 /* -------------------------------- Media Queries */
 
 

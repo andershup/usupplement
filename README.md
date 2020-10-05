@@ -74,3 +74,6 @@ See wireframes.
 ### Testing
 
 ### development
+
+## Attribution 
+The basic framework of settings.py copied from django documention
