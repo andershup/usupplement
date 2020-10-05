@@ -69,7 +69,7 @@ See wireframes.
 ### Technologies used
 
 * Django
-*
+* pillow in order to use the image field
 
 ### Testing
 
