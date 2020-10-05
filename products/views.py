@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q #special model from django to generate a search query with 'or' logic
-from .models import Product
+from .models import Product,Category
 
 # Create your views here.
 
@@ -13,8 +13,14 @@ def all_products(request):
     products = Product.objects.all()
     # To return all products from the database
     query = None
+    categories = None
     #copied for Code Institute lesson
     if request.GET:
+        if 'category' in request.GET:
+            categories = request.GET['category'].split(',') # you dont need to split at the commas I dont think(not comma seperated in main-nav)
+            products = products.filter(category__name__in=categories) #note double underscore for django query (looking for nameField of the category model)
+            categories = Category.objects.filter(name__in=categories) # and we can do this because cat and product are related with a foreign key.
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -28,6 +34,8 @@ def all_products(request):
         'products': products,
     # So our products wil be available in the template
         'search_term': query,
+        'current_categories': categories,
+         #we name the list of category objects and return it to the context so we can use in template later on.
     }
 
     return render(request, 'products/products.html', context)
