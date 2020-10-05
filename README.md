@@ -7,6 +7,7 @@ Milestone project 4: e-commerce web application</h1>
 |  **As a** | **I want to...** | **so that...** |
 | --- | --- | --- |
 |  Customer | be able to view a list of products | I can quickly add product to my basket. |
+|  Customer | be able to sort products by category | I can easily narrow down search. |
 |  Customer | be able to create my own account | I can complete a purchase more easily in the future. |
 |  Customer | I want a clear summary of my basket | I can make an informed decision as to whether to commit to purchase. |
 |  Customer | I want a clear presentation of products | I can make an informed decision |

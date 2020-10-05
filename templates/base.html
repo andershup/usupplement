@@ -44,7 +44,7 @@
                 </a>
             </div>
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-                <form method="GET" action=""> <!--GET because we will be submitting searches as url params, action url does not exist yet-->
+                <form method="GET" action="{% url 'products' %}"> <!--so ends up in the url as a get param. see if request.GET exists-->
                     <div class="input-group w-100"> <!--100% width text input with q for query-->
                         <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our supplements">
                         <div class="input-group-append"> <!--note: input-group-append-->
