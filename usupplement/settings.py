@@ -74,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request', # allows allauth to access HTTP req in our templates
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'bag.contexts.bag_contents', #for the context processor in contexts.py(app.file.view)
             ],
         },
     },
@@ -158,3 +159,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # where uploaded media files will go
 
+STANDARD_DELIVERY_PERCENTAGE = 10

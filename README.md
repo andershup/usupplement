@@ -73,6 +73,7 @@ See wireframes.
 * pillow in order to use the image field
 
 ### Testing
+dpaste.com 
 
 ### development
 
