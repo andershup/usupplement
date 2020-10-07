@@ -41,6 +41,19 @@ body {
     color: white;
 }
 
+.btn-outline-black { /*to reverse the above when hovered*/
+    background: white;
+    color: black !important; /* use important to override link colors for <a> elements */
+    border: 1px solid black;
+}
+
+.btn-outline-black:hover, /*to reverse the above when hovered*/
+.btn-outline-black:active,
+.btn-outline-black:focus {
+    background: black;
+    color: white !important;
+}
+
 .shop-now-button:hover,
 .shop-now-button:active,
 .shop-now-button:focus,

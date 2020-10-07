@@ -12,7 +12,6 @@ class ProductAdmin(admin.ModelAdmin):
         'category',
         'sku',
         'price',
-        'rating',
         'image',
     )
     # Ordering attribute tuple to sort by 'name'***
