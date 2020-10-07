@@ -14,8 +14,11 @@ def all_products(request):
     # To return all products from the database
     query = None
     categories = None
+    sort = None
+    direction = None 
     #copied for Code Institute lesson
     if request.GET:
+
         if 'category' in request.GET:
             categories = request.GET['category'].split(',') # you dont need to split at the commas I dont think(not comma seperated in main-nav)
             products = products.filter(category__name__in=categories) #note double underscore for django query (looking for nameField of the category model)

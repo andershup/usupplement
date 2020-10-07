@@ -23,6 +23,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')), #includes all the allauth urls
     path('', include('home.urls')),
     path('products/', include('products.urls')),
+    path('bag/', include('bag.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 #above we use the static functionto add the media url to our list of URLs
 # eg. ('products/') are top level urls
