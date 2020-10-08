@@ -8,7 +8,7 @@ def bag_contents(request):
     bag_items = []
     total = 0
     product_count = 0
-    bag = request.session.get('bag', {})
+    bag = request.session.get('bag', {}) #getting the bag details from session so can make available throughout the templates so can display total top right
 
     for item_id, quantity in bag.items():
         product = get_object_or_404(Product, pk=item_id)
