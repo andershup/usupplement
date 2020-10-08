@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'products',
     'bag',
     'checkout',
+    'crispy_forms',
+
 ]
 
 MIDDLEWARE = [
@@ -60,6 +62,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'usupplement.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -75,8 +79,13 @@ TEMPLATES = [
                 'django.template.context_processors.request', # allows allauth to access HTTP req in our templates
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media', #allows access to media folder even if no image.
                 'bag.contexts.bag_contents', #for the context processor in contexts.py(app.file.view)
             ],
+            'builtins': [ #copied from CI lesson
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
