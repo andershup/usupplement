@@ -71,6 +71,7 @@ See wireframes.
 
 * Django
 * pillow in order to use the image field
+* Stripe
 
 
 ### Testing
