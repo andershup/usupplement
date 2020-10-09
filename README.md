@@ -78,5 +78,8 @@ dpaste.com
 
 ### development
 
+### notes
+Stripe js script included in the base template to allow all fraud detection feature to work throughout the project.
+
 ## Attribution 
 The basic framework of settings.py copied from django documention

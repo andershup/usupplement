@@ -136,3 +136,12 @@
         </div>
     </div>
 {% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <!--Since we cant rnder template variables in external js.files we use the built-in template filter json_script to render them here
+    then we can acces them in the external file.-->
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }} <!--public key-->
+    {{ client_secret|json_script:"id_client_secret" }} <!--Client secret-->
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+{% endblock %}
