@@ -58,8 +58,9 @@ form.addEventListener('submit', function(ev) {
     // Stripe method to send card info securely to stripe
     stripe.confirmCardPayment(clientSecret, {
         payment_method: {
-            card: card,
+            card: card, //Provide to card to stripe
         }
+        //Then execute this function on the result
     }).then(function(result) {
         if (result.error) {
             var errorDiv = document.getElementById('card-errors');
@@ -69,6 +70,7 @@ form.addEventListener('submit', function(ev) {
                 </span>
                 <span>${result.error.message}</span>`;
             $(errorDiv).html(html);
+            //If there is an error we disabled to false to allow the user to fix it
             card.update({ 'disabled': false});
             $('#submit-button').attr('disabled', false);
         } else {
