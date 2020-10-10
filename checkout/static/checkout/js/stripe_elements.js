@@ -55,10 +55,15 @@ form.addEventListener('submit', function(ev) {
     // Disable both card element and submit to avoid multiple submissions
     card.update({ 'disabled': true});
     $('#submit-button').attr('disabled', true);
+    // fade out the form when user clicks submit
+    //$('#payment-form').fadeToggle(100); THESE ARE NOT FUNCTIONING
+    //$('#loading-overlay').fadeToggle(100);
     // Stripe method to send card info securely to stripe
     stripe.confirmCardPayment(clientSecret, {
         payment_method: {
             card: card, //Provide to card to stripe
+        //If user closes browser after payment but before the form is submitted
+        // we end up with payment but no order
         }
         //Then execute this function on the result
     }).then(function(result) {
@@ -70,6 +75,9 @@ form.addEventListener('submit', function(ev) {
                 </span>
                 <span>${result.error.message}</span>`;
             $(errorDiv).html(html);
+            // Disable the fadetoggles from above
+            //$('#payment-form').fadeToggle(100);      THESE ARE NOT FUNCTIONING
+            //$('#loading-overlay').fadeToggle(100);
             //If there is an error we disabled to false to allow the user to fix it
             card.update({ 'disabled': false});
             $('#submit-button').attr('disabled', false);
