@@ -61,10 +61,36 @@ form.addEventListener('submit', function(ev) {
     // Stripe method to send card info securely to stripe
     stripe.confirmCardPayment(clientSecret, {
         payment_method: {
-            card: card, //Provide to card to stripe
-        //If user closes browser after payment but before the form is submitted
-        // we end up with payment but no order
-        }
+            card: card, //Provide to card to stripe. This is where weghooks start
+            // we need to stuff the order details into here so we can get it from paymentintent success when comes back from stripe
+            // stripe payment intent object has a spot for a billing details object called billing details.
+                    billing_details: {
+                    name: $.trim(form.full_name.value), // trip off any eccess white space
+                    phone: $.trim(form.phone_number.value),
+                    email: $.trim(form.email.value),
+                    address:{
+                        line1: $.trim(form.street_address1.value),
+                        line2: $.trim(form.street_address2.value),
+                        city: $.trim(form.town_or_city.value),
+                        country: $.trim(form.country.value),
+                        state: $.trim(form.county.value),
+                    }
+                }
+            },
+            shipping: { //all the same fields except email
+                name: $.trim(form.full_name.value),
+                phone: $.trim(form.phone_number.value),
+                address: {
+                    line1: $.trim(form.street_address1.value),
+                    line2: $.trim(form.street_address2.value),
+                    city: $.trim(form.town_or_city.value),
+                    country: $.trim(form.country.value),
+                    // only adding postcode here. billing will come form stripe and stripe will override it there.
+                    postal_code: $.trim(form.postcode.value),
+                    state: $.trim(form.county.value),
+                }
+            },
+
         //Then execute this function on the result
     }).then(function(result) {
         if (result.error) {
