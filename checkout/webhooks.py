@@ -28,11 +28,15 @@ def webhook(request):
         )
     except ValueError as e:
         # Invalid payload
+        print('first') 
         return HttpResponse(status=400)
     except stripe.error.SignatureVerificationError as e:
         # Invalid signature
+        print('second') #This one causing the error
+        print(wh_secret)
         return HttpResponse(status=400)
     except Exception as e:
+        print('third')
         return HttpResponse(content=e, status=400)
 
     # Code from Code Institute
@@ -56,6 +60,7 @@ def webhook(request):
     # envent_handler is just an alias for whatever function we pulled out of the dictionary
     # Call the event handler with the event
     response = event_handler(event)
+    print('forth')
     return response
 
     

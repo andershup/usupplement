@@ -51,7 +51,11 @@ def checkout(request):
         }
         order_form = OrderForm(form_data) #instance of the form using the form data
         if order_form.is_valid(): 
-            order = order_form.save() #to get the order number for line 48 checkout success
+            order = order_form.save(commit=False) #to get the order number for line 48 checkout success.
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.original_bag = json.dumps(bag)
+            order.save() #we have commit=False above to avoid multiple commits
             for item_id, item_data in bag.items():
                 print(item_id)
                 try:

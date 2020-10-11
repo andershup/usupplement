@@ -56,16 +56,25 @@ form.addEventListener('submit', function(ev) {
     card.update({ 'disabled': true});
     $('#submit-button').attr('disabled', true);
     // fade out the form when user clicks submit
-    //$('#payment-form').fadeToggle(100); THESE ARE NOT FUNCTIONING
-    //$('#loading-overlay').fadeToggle(100);
+    $('#payment-form').fadeToggle(100); //THESE ARE NOT FUNCTIONING
+    $('#loading-overlay').fadeToggle(100);
     // Stripe method to send card info securely to stripe
-    stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-            card: card, //Provide to card to stripe. This is where weghooks start
-            // we need to stuff the order details into here so we can get it from paymentintent success when comes back from stripe
-            // stripe payment intent object has a spot for a billing details object called billing details.
-                    billing_details: {
-                    name: $.trim(form.full_name.value), // trip off any eccess white space
+    // We get the boolean value of the 'save info' box
+    var saveInfo = Boolean($('#id-save-info').attr('checked'))
+    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+    var postData = {
+        'csrfmiddlewaretoken': csrfToken,
+        'client_secret': clientSecret,
+        'save_info': saveInfo,
+    };
+    var url = '/checkout/cache_checkout_data/';
+
+    $.post(url, postData).done(function () {
+        stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    name: $.trim(form.full_name.value),
                     phone: $.trim(form.phone_number.value),
                     email: $.trim(form.email.value),
                     address:{
@@ -77,7 +86,7 @@ form.addEventListener('submit', function(ev) {
                     }
                 }
             },
-            shipping: { //all the same fields except email
+            shipping: {
                 name: $.trim(form.full_name.value),
                 phone: $.trim(form.phone_number.value),
                 address: {
@@ -85,32 +94,31 @@ form.addEventListener('submit', function(ev) {
                     line2: $.trim(form.street_address2.value),
                     city: $.trim(form.town_or_city.value),
                     country: $.trim(form.country.value),
-                    // only adding postcode here. billing will come form stripe and stripe will override it there.
                     postal_code: $.trim(form.postcode.value),
                     state: $.trim(form.county.value),
                 }
             },
-
-        //Then execute this function on the result
-    }).then(function(result) {
-        if (result.error) {
-            var errorDiv = document.getElementById('card-errors');
-            var html = `
-                <span class="icon" role="alert">
-                <i class="fas fa-times"></i>
-                </span>
-                <span>${result.error.message}</span>`;
-            $(errorDiv).html(html);
-            // Disable the fadetoggles from above
-            //$('#payment-form').fadeToggle(100);      THESE ARE NOT FUNCTIONING
-            //$('#loading-overlay').fadeToggle(100);
-            //If there is an error we disabled to false to allow the user to fix it
-            card.update({ 'disabled': false});
-            $('#submit-button').attr('disabled', false);
-        } else {
-            if (result.paymentIntent.status === 'succeeded') {
-                form.submit();
+        }).then(function(result) {
+            if (result.error) {
+                var errorDiv = document.getElementById('card-errors');
+                var html = `
+                    <span class="icon" role="alert">
+                    <i class="fas fa-times"></i>
+                    </span>
+                    <span>${result.error.message}</span>`;
+                $(errorDiv).html(html);
+                $('#payment-form').fadeToggle(100);
+                $('#loading-overlay').fadeToggle(100);
+                card.update({ 'disabled': false});
+                $('#submit-button').attr('disabled', false);
+            } else {
+                if (result.paymentIntent.status === 'succeeded') {
+                    form.submit();
+                }
             }
-        }
-    });
+        });
+    }).fail(function () {
+        // just reload the page, the error will be in django messages
+        location.reload();
+    })
 });
