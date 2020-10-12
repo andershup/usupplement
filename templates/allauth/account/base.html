@@ -1,1 +1,18 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
+<!--This extends the main alluth base and then the others extend this one-->
+
+<!--this is going to replace the main allauth base templates content block-->
+<!--code copied from CI-->
+{% block content %}
+    <div class="container header-container">
+        <div class="overlay"></div>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="allauth-form-inner-content">
+                    {% block inner_content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
