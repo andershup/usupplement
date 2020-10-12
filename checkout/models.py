@@ -7,14 +7,20 @@ from django.conf import settings
 from django_countries.fields import CountryField
 
 from products.models import Product
-
+from profiles.models import UserProfile
 
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
+    # we create a new foreign key for the profiles.UserProfile connection
+    # SET_NULL so if the user deletes we can keep order history in the admins still
+    # related name so we can access users orders by calling eg user.userprofile.order
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True, related_name='orders')
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
-    country = CountryField(blank_label="country*",max_length=40, null=False, blank=False)
+    # Drop down selector for country. * for required. No placeholder for dropdown boxes so blank
+    country = CountryField(blank_label="country*",max_length=40, null=False, blank=False) # See css select:invalid
     postcode = models.CharField(max_length=20, null=True, blank=True)
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)

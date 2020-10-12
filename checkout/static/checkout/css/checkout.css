@@ -50,6 +50,17 @@
     color: #000;
     border: 1px solid #000;
 }
+
+select,
+select option { /*and the select child options default black as well*/
+    color: #000000;
+}
+
+select:invalid, /*invalid due to not having selected */
+select option[value=""] { /*this is the blank one in models.country that just say country */
+    color: #aab7c4 !important;
+}
+
 /* code copied from code institute*/
 #loading-overlay {
 	display: none;
