@@ -15,8 +15,8 @@ class OrderAdmin(admin.ModelAdmin):
                        'delivery_cost', 'order_total',
                        'grand_total', 'original_bag', 'stripe_pid')
 
-    fields = ('order_number', 'date', 'full_name',     #This fields class is not necessary but allows ordering in admin interface
-              'email', 'phone_number', 'country',
+    fields = ('order_number', 'user_profile', 'date', 'full_name',     #This fields class is not necessary but allows ordering in admin interface
+              'email', 'phone_number', 'country', #we have added user_profile to field the order in the admin
               'postcode', 'town_or_city', 'street_address1',
               'street_address2', 'county', 'delivery_cost',
               'order_total', 'grand_total', 'original_bag', 'stripe_pid')
