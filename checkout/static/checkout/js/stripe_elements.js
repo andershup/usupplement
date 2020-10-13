@@ -113,7 +113,7 @@ form.addEventListener('submit', function(ev) {
                 $('#submit-button').attr('disabled', false);
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
-                    form.submit();
+                    form.submit(); //we can comment out so checkout view fail to see if webhook handler will catch the payment succeeded and do it for us.
                 }
             }
         });
