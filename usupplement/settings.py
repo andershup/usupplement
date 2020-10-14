@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 
 import os
+import dj_database_url
 
 if os.path.exists('env.py'):
     import env
@@ -122,13 +123,16 @@ WSGI_APPLICATION = 'usupplement.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
+DATABASES = { #default databasecommented out and replaced below
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+# replace database with a call to dj_database
+#DATABASES = {     #you may need this for dumpdata for the products if you go that way
+#    'default': dj_database_url.parse('postgres://lzbujpxzhcxqzy:f14fad7e61b450c1e19496db889078c636585cac523bb05c0598d3f1a04bbbfc@ec2-54-75-150-32.eu-west-1.compute.amazonaws.com:5432/dcm3u5f91896kn')
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
