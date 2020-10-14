@@ -1,0 +1,1 @@
+web: gunicorn usupplement.wsgi:application

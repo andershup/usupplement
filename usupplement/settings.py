@@ -31,7 +31,7 @@ SECRET_KEY = '_w^@wb(nqvw*_n=++k+bjx&olb@e7)exoj474pz^)ug3*50j0i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['usupplement.herokuapp.com', 'localhost'] #local host so gitpod will still work
 
 
 # Application definition
@@ -123,13 +123,18 @@ WSGI_APPLICATION = 'usupplement.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = { #default databasecommented out and replaced below
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-}
-# replace database with a call to dj_database
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+
 #DATABASES = {     #you may need this for dumpdata for the products if you go that way
 #    'default': dj_database_url.parse('postgres://lzbujpxzhcxqzy:f14fad7e61b450c1e19496db889078c636585cac523bb05c0598d3f1a04bbbfc@ec2-54-75-150-32.eu-west-1.compute.amazonaws.com:5432/dcm3u5f91896kn')
 #}
