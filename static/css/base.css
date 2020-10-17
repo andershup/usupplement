@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background: url('/media/thebluepill.jpg') no-repeat center center fixed;
+    background: url('/media/pills_high_def.jpg') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px); /*164 is the eventual height of our top header */
     color: gray; /*default font colour and family for body */
