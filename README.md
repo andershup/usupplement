@@ -76,6 +76,7 @@ See wireframes.
 
 ### Testing
 dpaste.com 
+choose category showing on all pages
 
 ### development
 

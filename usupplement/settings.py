@@ -136,10 +136,6 @@ else:
         }
     }
 
-#DATABASES = {     #you may need this for dumpdata for the products if you go that way
-#    'default': dj_database_url.parse('postgres://lzbujpxzhcxqzy:f14fad7e61b450c1e19496db889078c636585cac523bb05c0598d3f1a04bbbfc@ec2-54-75-150-32.eu-west-1.compute.amazonaws.com:5432/dcm3u5f91896kn')
-#}
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -185,7 +181,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 if 'USE_AWS' in os.environ:
     # Cache control
-    AWS_S3_OBJECT_PARAMETERS = {
+    AWS_S3_OBJECT_PARAMETERS = { #tells the browser that it is ok to cache static files for a long time. since they dont change very often and this will impoprove operformance for user.
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
         'CacheControl': 'max-age=94608000',
     }
