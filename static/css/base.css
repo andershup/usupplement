@@ -30,10 +30,14 @@ body {
     width: fit-content;
 }
 
+#title-logo span {
+    color: red
+}
+
 .shop-now-button {
-    background: black;
+    
     color: white;
-    min-width: 260px;
+    min-width: 160px;
 }
 
 .btn-black {
@@ -54,9 +58,7 @@ body {
     color: white !important;
 }
 
-.shop-now-button:hover,
-.shop-now-button:active,
-.shop-now-button:focus,
+
 .btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
