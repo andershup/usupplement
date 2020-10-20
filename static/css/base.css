@@ -40,6 +40,10 @@ body {
     min-width: 160px;
 }
 
+.remove-item {
+    cursor: pointer;
+} 
+
 .btn-black {
     background: black;
     color: white;
