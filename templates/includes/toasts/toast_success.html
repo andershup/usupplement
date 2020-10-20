@@ -27,6 +27,10 @@
                         <div class="col-9">
                             <p class="my-0"><strong>{{ item.product.name }}</strong></p>
                             <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
+                            <form method="POST" action="{% url 'remove_from_bag' item.item_id %}" class="form mb-2">
+                                {% csrf_token %}
+                                <a class="remove-item text-danger" id="remove_{{ item.item_id }}">Remove</a>
+                            </form>
                         </div>
                     </div>
                 {% endfor %}
@@ -48,3 +52,17 @@
         {% endif %}
     </div>
 </div>
+<!--Javascript to enable removal of item from toast-->
+<script type="text/javascript">
+
+    $('.remove-item').click(function(e) {
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var url = `/bag/remove/${itemId}`;
+        var data = {'csrfmiddlewaretoken': csrfToken};
+        $.post(url, data)
+        .done(function() {
+        location.reload();
+         });
+    })
+</script>
