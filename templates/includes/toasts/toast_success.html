@@ -1,6 +1,6 @@
 <!--Code from bootstrap-->
 <!--custom-toast class from Code Institute-->
-
+{% load bag_tools %}
 <div class="toast custom-toast rounded-0 border-top-0" data-autohide="false"> 
     <div class="w-100 toast-capper bg-success"></div>
     <div class="toast-header bg-white text-dark">
@@ -17,7 +17,7 @@
             </div>
         </div>
         {% if grand_total %}
-            <p class="logo-font bg-white text-black py-1">Your Bag ({{ product_count }})</p>
+            <p class="logo-font bg-white text-muted py-1">Your Bag ({{ product_count }})</p>
             <div class="bag-notification-wrapper">
                 {% for item in bag_items %}
                     <div class="row">
@@ -27,6 +27,8 @@
                         <div class="col-9">
                             <p class="my-0"><strong>{{ item.product.name }}</strong></p>
                             <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
+                            <p class="my-0 float-right">${{ item.product.price | calc_subtotal:item.quantity }}</p>
+                            <p>Subtotal:</p>
                             <form method="POST" action="{% url 'remove_from_bag' item.item_id %}" class="form mb-2">
                                 {% csrf_token %}
                                 <a class="remove-item text-danger" id="remove_{{ item.item_id }}">Remove</a>
