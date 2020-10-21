@@ -10,6 +10,7 @@ class ProductAdmin(admin.ModelAdmin):
     # Column order in admin can be changed here***
         'name',
         'category',
+        'first_sold',
         'sku',
         'price',
         'image',
