@@ -11,6 +11,7 @@ class ProductAdmin(admin.ModelAdmin):
         'name',
         'category',
         'first_sold',
+        'uploaded_by',
         'sku',
         'price',
         'image',

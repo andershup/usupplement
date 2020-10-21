@@ -23,6 +23,7 @@ class Product(models.Model):
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     first_sold = models.DateTimeField(auto_now_add=True)
+    uploaded_by = models.CharField(max_length=254, null=False, blank="True")
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2) #decimal field 
     image = models.ImageField(null=True, blank=True)
