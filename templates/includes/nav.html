@@ -1,6 +1,6 @@
 
 
-   
+   <nav class="navbar navbar-expand-lg">
   <a class="navbar-brand" href="{% url 'home' %}">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -9,7 +9,7 @@
     <ul class="navbar-nav">
       
          <li class="list-inline-item dropdown">
-                        <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                        <a class="nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
                             <div class="text-center justify-content-center">
                                 <div><i class="fas fa-user fa-lg"></i></div>
                                 <p class="my-0">My Account</p>
@@ -19,6 +19,7 @@
                             {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %} 
                                     <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
+                                    <a href="{% url 'add_blog' %}" class="dropdown-item">Create Blog</a>
                                 {% endif %}
                                 <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                                 <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
@@ -29,7 +30,7 @@
                         </div>
                     </li>
         <li class="list-inline-item"> 
-                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link justify-content-center" href="{% url 'view_bag' %}"> 
+                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}{% endif %} nav-link justify-content-center" href="{% url 'view_bag' %}"> 
                             <div class="text-center">
                                 <div><i class="fas fa-shopping-bag fa-lg"></i></div>
                                 <p class="my-0">
@@ -59,7 +60,7 @@
                     <div class="input-group w-100"> 
                         <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our supplements">
                         <div class="input-group-append"> 
-                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                            <button class="form-control btn border border-black rounded-0" type="submit">
                                 <span class="icon">
                                     <i class="fas fa-search"></i>
                                 </span>
@@ -68,6 +69,7 @@
                     </div>
                 </form>
   </div>
+  </nav>
 
        
          

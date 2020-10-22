@@ -7,12 +7,12 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = 'Categories'
-    # To change the plural spelling in column
+    
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True) # can be null in the database and blank in forms
 
-    def __str__(self):  #takes in the category model itself
-        return self.name #return .name from line 6
+    def __str__(self):  
+        return self.name 
 
     def get_friendly_name(self):
         return self.friendly_name #this one just returns the friendly name if we need
@@ -22,14 +22,14 @@ class Product(models.Model):
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL) #set to null rather than deleting the product
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
-    first_sold = models.DateTimeField(auto_now_add=True)
+    first_sold = models.DateTimeField(auto_now_add=True, editable=True)
     uploaded_by = models.CharField(max_length=254, null=False, blank="True")
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2) #decimal field 
     image = models.ImageField(null=True, blank=True)
-    # each product requires a name, description and a price
+    
     def __str__(self):
-        return self.name #again just returns the name in line 19
+        return self.name 
 
 
 """class SpecialDeals(models.Model):

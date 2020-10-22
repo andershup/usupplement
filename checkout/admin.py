@@ -24,7 +24,7 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ('order_number', 'date', 'full_name', #list display option to restrict the columns in the order list.
                     'order_total', 'delivery_cost',
                     'grand_total',)
-
+    #putting the  most recent orders at the top
     ordering = ('-date',) 
 
 admin.site.register(Order, OrderAdmin) #We skip registering the first class because it is available within this one

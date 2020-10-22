@@ -18,6 +18,7 @@ body {
     justify-content: center;
     height: 1.5rem;
     width: 1.5rem;
+    color: white;
 }
 
 /* end of Bulma */
@@ -31,7 +32,7 @@ body {
 }
 
 #title-logo span {
-    color: red
+    color: #495057
 }
 
 .shop-now-button {
@@ -44,7 +45,9 @@ body {
     cursor: pointer;
 } 
 
-.btn-black {
+
+.btn-black,
+.navbar {
     background: black;
     color: white;
 }
