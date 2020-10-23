@@ -11,6 +11,21 @@ body {
 
 }
 
+.navbar {
+    /*background-color: #313638;*/
+    background-color: transparent;
+}
+
+.text-nav {
+    /*color: #937666;
+    color: #EDF6F9;*/
+    color: #EEF0F2
+}
+
+.search-box {
+    background-color: #E0DFD5;
+}
+
 /* from Bulma as this will ensure that all font awsome stays centered and consistent size*/
 .icon {
     align-items: center;
@@ -25,15 +40,18 @@ body {
 /* for whenever we want to call attention to something */
 .logo-font {
     text-transform: uppercase;
+    color: #937666
+}
+
+#title-logo span {
+    color:  #313638;
 }
 /* ensures logo only takes up as much space as required */
 .main-logo-link {
     width: fit-content;
 }
 
-#title-logo span {
-    color: #495057
-}
+
 
 .shop-now-button {
     
@@ -46,8 +64,7 @@ body {
 } 
 
 
-.btn-black,
-.navbar {
+.btn-black {
     background: black;
     color: white;
 }

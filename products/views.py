@@ -34,6 +34,8 @@ def all_products(request):
             
             queries = Q(name__icontains=query) | Q(description__icontains=query) #we want the query to match eithe in name or description so use q
             products = products.filter(queries)
+            if not products:
+                messages.error(request, "Sorry we do not have that product")
 
     context = {
         'products': products,
