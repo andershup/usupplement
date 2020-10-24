@@ -77,14 +77,25 @@ See wireframes.
 * JavaScript - Frontend functionality
 * Python - Database backend management
 
-### Frameworks
+### Frameworks, Libraries and tools used
 
-* Bootstrap - Framework.
-* Django - Python framework.
-
-### Libraries
-
-* jQuery.js
+* Bootstrap - Framework to Build the basic structure.
+* Django - Python based framework for the full development of the site.
+* jQuery.js - JavaScript library for HTML DOM manipulation
+* Google Fonts
+* Font Awesome - for icons
+* Stripe - for payment processing.
+* Psycopg2 - a database adaptor for Python
+* Gunicorn (green unicorn) - WSGI server implementation for running Python web apps.
+* Git/Github - for version control.
+* Gitpod - for developed and editing code.
+* Heroku - for application deployment.
+* Pixabay - for background image.
+* W3C Validator - HTML and CSS. 
+* PEP8 Validator - Python 
+* Balsamiq - for creating wireframes
+* AWS S3 - for cloud storage.
+* miniwebtool for generating secret key for Django.
 
 ### Databases
 
@@ -98,12 +109,50 @@ See wireframes.
 * Git and Gitpod - development and version control
 
 
-### TESTING
-dpaste.com 
-choose category showing on all pages
+## TESTING
 
-### DEPLOYMENT
+* Google Chrome developer tools was used throughout this project. 
+
+
+## DEPLOYMENT
+
 To deplay this project locally:
+
+  1. Follow this [link](https://github.com/andershup/usupplement) to my Github repository.
+  2. Click clone or download
+  3. Copy
+  4. Create virtual enviroment.
+  5. Open Git Bash.
+  6. $ git clone (paste the copied url).
+  7. $ touch requirements.txt
+  8. $ pip3 install -r requirements.txt (use sudo pip for cloud9)
+  9. $ touch env<span></span>.py
+  10. Add your enviroment variables. 
+  
+      (STRIPE_PUBLIC_KEY is added for consistency only)
+
+     import os
+     os.environ.("STRIPE_PUBLIC_KEY", "secret key here")
+     os.environ.("STRIPE_SECRET_KEY", "secret key here") 
+     os.environ.("DATABASE_URL", "secret key here") 
+     os.environ.("SECRET_KEY", "secret key here") 
+     os.environ.("AWS_ACCESS_KEY_ID", "secret key here") 
+     os.environ.("AWS_SECRET_ACCESS_KEY", "secret key here")
+
+   11. In settings<span></span>.py add your variables.
+   12. $ touch .gitignore
+   13. Add your env<span></span>.py to .gitignore file.
+   14. $ python3 manage<span></span>.py makemigrations --dry-run
+   15. $ python3 manage<span></span>.py makemigrations
+   16. $ python3 manage<span></span>.py migrate --plan 
+   17. $ python3 manage<span></span>.py migrate 
+   18. $ python3 manage<span></span>.py createsuperuser (follow instructions)
+   19. $ python3 manage<span></span>.py runserver
+   20. To login as superuser add /admin to your URL 
+
+
+
+
 * Clone the repository (or use git pull)
 * Create your virtual enviroment
 * Create "requirements.txt" file
@@ -128,7 +177,10 @@ TO deploy to Heroku
 Stripe js script included in the base template to allow all fraud detection feature to work throughout the project.
 
 ## ATTRIBUTION 
-The basic framework of settings.py copied from django 
+The basic framework of settings.py copied from django
+
+## DISCLAIMER
+
 All content is for educational purposes only. 
 
 ## ACKNOWLEDGEMENTS
