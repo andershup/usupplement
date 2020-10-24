@@ -12,18 +12,19 @@ body {
 }
 
 .navbar {
-    /*background-color: #313638;*/
-    background-color: transparent;
+    background-color: #313638;
+    box-shadow: 0 16px 48px #E3E7EB;
 }
 
 .text-nav {
     /*color: #937666;
     color: #EDF6F9;*/
-    color: #EEF0F2
+    color: white;
+    padding: 1px 0;
 }
 
 .search-box {
-    background-color: #E0DFD5;
+    background-color: white;
 }
 
 /* from Bulma as this will ensure that all font awsome stays centered and consistent size*/
@@ -267,6 +268,14 @@ body {
     border-radius: 0;
 }
 
+.footer {
+    color: white;
+    background-color: #313638;
+}
+.text-footer {
+    padding: 3px 5px 0 10px;
+    margin: 0;
+}
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {

@@ -116,6 +116,8 @@ See wireframes.
 
 ## DEPLOYMENT
 
+The project developed and hosted on Gitpod with a live Version on Heroku.
+
 To deplay this project locally:
 
   1. Follow this [link](https://github.com/andershup/usupplement) to my Github repository.
@@ -151,32 +153,55 @@ To deplay this project locally:
    20. To login as superuser add /admin to your URL 
 
 
+-- ----------
 
 
-* Clone the repository (or use git pull)
-* Create your virtual enviroment
-* Create "requirements.txt" file
-* pip3 install -r requirements.txt (use sudo pip3 with Cloud9)
-* create a  file.
-* Add the above file to your .gitignore 
-* Set:
-    * os.environ["STRIPE_WH_SECRET"] = ""
-    * os.environ["STRIPE_PUBLIC_KEY"] = "" - (added for consistancy)
-    * os.environ["STRIPE_SECRET_KEY] = ""
 
 
-The project developed and hosted on Gitpod with a live Version on Heroku.
+
 
 TO deploy to Heroku
-* Create a new heroku project, set the env vars as listed above
-* In Heroku/deploy link your enviroment.
-* Create a Procfile in your enviroment containing: gunicorn django_app.wsgi:application
+1. Create a new heroku project, set the env vars as listed above
+2. In Heroku/deploy, link your enviroment.
+3. From settings copy the value of the DATABASE_URL and add to your env<span></span>.py
+   
+   Note, your config vars in Heroku/settings should be set as follows
+
+|   KEY    |    VALUE    
+|:------------|:-------------:
+| AWS_ACCESS_KEY_ID | *your key here*
+| AWS_SECRET_ACCESS_KEY | *your key here*
+| DATABASE_URL |   *your key here*                 |                |
+| STRIPE_PUBLIC_KEY | *your key here*
+| STRIPE_SECRET_KEY | *your key here*
+| STRIPE_WH_SECRET | *your key here*
+| DISABLE_COLLECTSTATIC | *your key here* 
+
+4. Create a Procfile in your enviroment containing: gunicorn django_app.wsgi:application
+5. $ pip3 install dj_database_url (sudo pip for Cloud9)
+6. $ pip3 install psycopg2 (sudo pip for Cloud9)
+7. $ pip3 freeze > requirements.txt
+8. $ python3 manage<span></span>.py makemigrations --dry-run
+9. $ python3 manage<span></span>.py makemigrations
+10. $ python3 manage<span></span>.py migrate --plan 
+11. $ python3 manage<span></span>.py migrate 
+12. $ python3 manage<span></span>.py createsuperuser (follow instructions)
+13. $ python3 manage<span></span>.py createsuperuser
+14. $ In Amazon AWS/S3 create bucket
+15. $ pip3 install django-storages 
+16. $ pip3 insatll boto3
+17. $ touch custom_storage.py (populate is in cloned enviroment)
+18. $ python3 manage<span></span>.py collect static. 
+19. (TO BE COMPLETED)
+
 
 
 ### NOTES
 Stripe js script included in the base template to allow all fraud detection feature to work throughout the project.
 
 ## ATTRIBUTION 
+
+(TO BE COMPLETED)
 The basic framework of settings.py copied from django
 
 ## DISCLAIMER
