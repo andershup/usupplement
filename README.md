@@ -1,9 +1,10 @@
 <h1 align="center">Usupplements<br>
 Milestone project 4: e-commerce web application</h1>
 
-### UX
+## UX
 
-#### user/owner stories
+## USER/OWNER STORIES
+
 |  **As a** | **I want to...** | **so that...** |
 | --- | --- | --- |
 |  Customer | be able to view a list of products | I can quickly add product to my basket. |
@@ -29,7 +30,7 @@ Milestone project 4: e-commerce web application</h1>
 
 See wireframes. 
 
-## Features
+## FEATURES
 
 ### Will do:
 * Navbar with the following features:
@@ -61,27 +62,83 @@ See wireframes.
 * A “return to top” button is the product list becomes extensive enough.
 * A nootropics product range added.
 
-## data
-### Items
-### models
+## DATA
+### ITEMS
+### MODELS
 
 ## colour schemes
 
-### Technologies used
+## TECHNOLOGIES USED
 
-* Django
-* pillow in order to use the image field
-* Stripe
+### Programming Languages
+
+* HTML5 - Structure 
+* CSS3 - Styling
+* JavaScript - Frontend functionality
+* Python - Database backend management
+
+### Frameworks
+
+* Bootstrap - Framework.
+* Django - Python framework.
+
+### Libraries
+
+* jQuery.js
+
+### Databases
+
+* PostgreSQL 
+* Sqlite3 - backup and early development database
+
+### Other 
+
+* Google Fonts
+* Font Awesome - Icons
+* Git and Gitpod - development and version control
 
 
-### Testing
+### TESTING
 dpaste.com 
 choose category showing on all pages
 
-### development
+### DEPLOYMENT
+To deplay this project locally:
+* Clone the repository (or use git pull)
+* Create your virtual enviroment
+* Create "requirements.txt" file
+* pip3 install -r requirements.txt (use sudo pip3 with Cloud9)
+* create a  file.
+* Add the above file to your .gitignore 
+* Set:
+    * os.environ["STRIPE_WH_SECRET"] = ""
+    * os.environ["STRIPE_PUBLIC_KEY"] = "" - (added for consistancy)
+    * os.environ["STRIPE_SECRET_KEY] = ""
 
-### notes
+
+The project developed and hosted on Gitpod with a live Version on Heroku.
+
+TO deploy to Heroku
+* Create a new heroku project, set the env vars as listed above
+* In Heroku/deploy link your enviroment.
+* Create a Procfile in your enviroment containing: gunicorn django_app.wsgi:application
+
+
+### NOTES
 Stripe js script included in the base template to allow all fraud detection feature to work throughout the project.
 
-## Attribution 
-The basic framework of settings.py copied from django documention
+## ATTRIBUTION 
+The basic framework of settings.py copied from django 
+All content is for educational purposes only. 
+
+## ACKNOWLEDGEMENTS
+
+Tutor support at Code Institute 
+
+Brian Macharia - My mentor
+
+Stack Overflow
+
+YouTube
+
+Me :-)
