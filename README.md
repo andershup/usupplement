@@ -100,7 +100,7 @@ See wireframes.
 ### Databases
 
 * PostgreSQL 
-* Sqlite3 - backup and early development database
+* Sqlite3 - backup and early development local database
 
 ### Other 
 
@@ -118,6 +118,8 @@ See wireframes.
 
 The project developed and hosted on Gitpod with a live Version on Heroku.
 
+Note: for Cloud9 users prefix the git command with "sudo"
+
 To deplay this project locally:
 
   1. Follow this [link](https://github.com/andershup/usupplement) to my Github repository.
@@ -127,11 +129,11 @@ To deplay this project locally:
   5. Open Git Bash.
   6. $ git clone (paste the copied url).
   7. $ touch requirements.txt
-  8. $ pip3 install -r requirements.txt (use sudo pip for cloud9)
+  8. $ pip3 install -r requirements.txt 
   9. $ touch env<span></span>.py
   10. Add your enviroment variables. 
   
-      (STRIPE_PUBLIC_KEY is added for consistency only)
+(STRIPE_PUBLIC_KEY is added for consistency only)
 
      import os
      os.environ.("STRIPE_PUBLIC_KEY", "secret key here")
@@ -142,14 +144,14 @@ To deplay this project locally:
      os.environ.("AWS_SECRET_ACCESS_KEY", "secret key here")
 
    11. In settings<span></span>.py add your variables.
-   12. $ touch .gitignore
+   12.     $ touch .gitignore
    13. Add your env<span></span>.py to .gitignore file.
-   14. $ python3 manage<span></span>.py makemigrations --dry-run
-   15. $ python3 manage<span></span>.py makemigrations
-   16. $ python3 manage<span></span>.py migrate --plan 
-   17. $ python3 manage<span></span>.py migrate 
-   18. $ python3 manage<span></span>.py createsuperuser (follow instructions)
-   19. $ python3 manage<span></span>.py runserver
+   14.     $ python3 manage<span></span>.py makemigrations --dry-run
+   16.     $ python3 manage<span></span>.py migrate --plan 
+   17.     $ python3 manage<span></span>.py migrate 
+   15.     $ python3 manage<span></span>.py makemigrations
+   18.     $ python3 manage<span></span>.py createsuperuser (follow instructions)
+   19.     $ python3 manage<span></span>.py runserver
    20. To login as superuser add /admin to your URL 
 
 
@@ -161,11 +163,154 @@ To deplay this project locally:
 
 
 TO deploy to Heroku
-1. Create a new heroku project, set the env vars as listed above
-2. In Heroku/deploy, link your enviroment.
-3. From settings copy the value of the DATABASE_URL and add to your env<span></span>.py
+
+ 
+If the Heroku command line interface is not already installed in your enviroment then use the folow commands:
+
+        $ curl https://cli-assets.heroku.com/install.sh | sh 
+        $ heroku login
+
+All instalation instructions available online. 
+
+    $ pip3 install psycopg2 
+    $ pip3 insatll gunicorn
+    $ pip3 freeze --local > requirements.txt
+    
+Ensure you are logged in then create your application
+
+    $ heroku app:create <name of your app>
+
+If not in the USA use --region eu (for europe)
+
+    $ heroku apps
+
+Verify your app is in the list.
+
+Heroku has now set up a git repository. we will use this to deploy to Heroku.
+
+To see your remote URLS
+
+    $ git remote -v 
+
+The heroku (push) destination can now be used with the following command
+
+    $ git push heroku master
+
+The origin (push) destination can now be used with the following command
+
+    $ git push origin master
+
+To connect the the database URL go to the Heroku Web UI resources tab and searching "postgres" and select Heroku Postgres
+
+Note: To use MySql select "Clear DB"
+
+Select plan then click "provision"
+
+To verify:
+
+    $ heroku addons 
+
+In order to connect the remote database 
+
+    $ pip3 install dj_database_url
+
+Repeat the command 
+
+    pip3 install freeze --local > requirements.txt
+
+To get your Heroku remote 
+
+    $ heroku config
+
+Copy the DATABASE_URL 
+
+Go to Heroku setting then config vars and add
+
+|   KEY    |    VALUE    
+|:------------|:-------------: | 
+| DATABASE_URL |  <your_app_database_url>                      
+| ALLOWED_HOSTS | https://<your_app_name>.heroku.com 
+
+In setting<span></span>.py 
+
+Comment out the current database settings and add the following below
+
+    DATABASES = {
+         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+
+import dj_database_url at the top of setting.<span>.py 
+
+then add
+
+    ALLOWED_HOSTS = os.environ.get('HEROKU_HOSTNAME')]
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+
+If there is not one already create a .gitignore file in your enviroment being careful to include the "."
+
+In .gitignore add
+
+    core.Microsoft*
+    env.py
+    __pycache__/
+    *.py[cod]
+    *.sqlite3
+    *.pyc
+
+If one does not already exist create a Procfile in your envirement being careful to use a capital "P"
+
+In Procfile add 
+
+    web: gunicorn django_todo.wsgi:applicaton
+
+then
+
+    $ python3 manage.py migrate
+
+Then 
+
+    $ git add .
+    $ git commit -m "your commit message"
+    $ git push origin master
+    $ heroku config:set DISABLE_COLLECTSTATIC=1
+    $ git push heroku master
+
+In case of any error messages
+
+    $ heroku logs --tail
+
+Go to the Heroku web ui, then deploy tab
+
+Under deployment method select Github (ensure you are logged in) 
+
+Search for your repo name and click "Connect"
+
+Click "Enable automatic Deploys"
+
+From this point on all "git push" commands will automatically deploy to Heroku
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+In Heroku/deploy, link your enviroment.
+
+From settings copy the value of the DATABASE_URL and add to your env<span></span>.py
    
-   Note, your config vars in Heroku/settings should be set as follows
+Note, your config vars in Heroku/settings should be set as follows
 
 |   KEY    |    VALUE    
 |:------------|:-------------:
