@@ -11,7 +11,7 @@ def add_blog(request):
         form = BlogForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Successfully added your blog!')
+            messages.info(request, 'your blog has been added!')
             return redirect(reverse('add_blog'))
         else: 
             messages.error(request, 'UUPPPS try that again')

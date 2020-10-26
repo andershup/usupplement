@@ -11,9 +11,21 @@ body {
 
 }
 
+button:focus {
+    outline: none;
+}
+
 .navbar {
     background-color: #313638;
     box-shadow: 0 16px 48px #E3E7EB;
+}
+
+.navbar-toggler {
+    background-color: white;
+}
+
+.navbar-toggler-icon {
+    color: #313638 !important;
 }
 
 .text-nav {
@@ -27,6 +39,10 @@ body {
     background-color: white;
 }
 
+.fa-search {
+    color:  #313638;
+}
+
 /* from Bulma as this will ensure that all font awsome stays centered and consistent size*/
 .icon {
     align-items: center;
@@ -34,7 +50,6 @@ body {
     justify-content: center;
     height: 1.5rem;
     width: 1.5rem;
-    color: white;
 }
 
 /* end of Bulma */
@@ -104,7 +119,6 @@ body {
 }
 
 /* copied from CI lesson */
-/* placed in base so we can use accross site */
 .overlay {
 	height: 100%;
 	width: 100%;
@@ -269,6 +283,7 @@ body {
 }
 
 .footer {
+    width: 100%;
     color: white;
     background-color: #313638;
 }
@@ -294,10 +309,10 @@ body {
 /* pad the top a bit when navbar is collapsed on mobile. This was copied from Code Institute lesson*/
 @media (max-width: 991px) {
     .header-container {
-        padding-top: 116px;
+        padding-top: 56px;
     }
 
     body {
-        height: calc(100vh - 116px);
+        height: calc(100vh - 56px);
     }
 }

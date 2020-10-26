@@ -1,9 +1,26 @@
 <h1 align="center">Usupplements<br>
 Milestone project 4: e-commerce web application</h1>
 
-## UX
 
-## USER/OWNER STORIES
+
+
+## Table of content 
+* [UX](#ux)
+* [UI](#ui)
+
+
+
+-- ----------
+
+## **UX** <a name="ux"></a>
+
+Usupplement was designed, built and deployed by Anders Olesen as the final project for the diploma in software development. It is an E-Commerce website aimed at people seeking to supplement their healthy lifestyle. The aim is to provide an approachable site where the user can be prsented with a clear and easy selection of the full range of vitamin types.
+
+The project utilizes Python 3, Django 2.2, JavaScript, and various other frameworks and libraries. Full CRUD functionality is offered throughout features of the project.
+
+
+
+### USER/OWNER STORIES 
 
 |  **As a** | **I want to...** | **so that...** |
 | --- | --- | --- |
@@ -26,13 +43,13 @@ Milestone project 4: e-commerce web application</h1>
 |  Owner | have my site and its features accessable on all formats | the likelyhood of a purchase is maximised. |
 |  Owner | have the route from arriving on site to purchase be as short and as simple as possible. | the likelyhood of a purchase is maximised. |
 
-### UI
+## **UI** <a name="ui"></a>
 
-See wireframes. 
+See [Wireframes](https://github.com/andershup/usupplement/tree/master/wireframes)
 
-## FEATURES
+### Features
 
-### Will do:
+#### Will do:
 * Navbar with the following features:
     * Dropdown menu for mobile view
     * Home button/link 
@@ -50,7 +67,7 @@ See wireframes.
  
 
 
-### Stretch goals:
+#### Stretch goals:
 * Special offers in Navbar (buy two, get one free etc)
 * Product size options.
 * Sort selection by rating/price etc.
@@ -113,6 +130,13 @@ See wireframes.
 
 * Google Chrome developer tools was used throughout this project. 
 
+| Code                                                        | Files Tested                                                       | Result |
+| :---------------------------------------------------------- | :----------------------------------------------------------------- | :----- |
+| CSS ([W3C](https://jigsaw.w3.org/css-validator/))           | style.css                                                          | PASS   |
+| HTML ([W3C](https://validator.w3.org/))                     | templates                                                          | PASS   |
+| Javascript: no major errors ([jshint](https://jshint.com/)) | dashboard.js, base.js                                              | PASS   |
+| Python ([PEP8](https://pep8online.com/))                    | views.py, models.py, forms.py, urls.py, settings.py, test\_\*\*.py | PASS   |
+
 
 ## DEPLOYMENT
 
@@ -120,18 +144,28 @@ The project developed and hosted on Gitpod with a live Version on Heroku.
 
 Note: for Cloud9 users prefix the git command with "sudo"
 
-To deplay this project locally:
+### To deplay this project locally:
 
-  1. Follow this [link](https://github.com/andershup/usupplement) to my Github repository.
-  2. Click clone or download
-  3. Copy
-  4. Create virtual enviroment.
-  5. Open Git Bash.
-  6. $ git clone (paste the copied url).
-  7. $ touch requirements.txt
-  8. $ pip3 install -r requirements.txt 
-  9. $ touch env<span></span>.py
-  10. Add your enviroment variables. 
+Follow this [link](https://github.com/andershup/usupplement) to my Github repository.
+
+Click clone or download
+
+Copy
+
+Create virtual enviroment.
+  
+  Python 3 needs to be installed on your machine, alongside PIP. 
+  
+  To allow you to access all functionality on the site locally, ensure you have created free accounts with the following services: - Stripe - AWS and set up an S3 bucket - Gmail.
+  
+Open Git Bash.
+
+    $ git clone (paste the copied url).
+    $ touch requirements.txt
+    $ pip3 install -r requirements.txt 
+    $ touch env<span></span>.py
+
+ Add your enviroment variables to env<span>.py 
   
 (STRIPE_PUBLIC_KEY is added for consistency only)
 
@@ -143,26 +177,23 @@ To deplay this project locally:
      os.environ.("AWS_ACCESS_KEY_ID", "secret key here") 
      os.environ.("AWS_SECRET_ACCESS_KEY", "secret key here")
 
-   11. In settings<span></span>.py add your variables.
-   12.     $ touch .gitignore
-   13. Add your env<span></span>.py to .gitignore file.
-   14.     $ python3 manage<span></span>.py makemigrations --dry-run
-   16.     $ python3 manage<span></span>.py migrate --plan 
-   17.     $ python3 manage<span></span>.py migrate 
-   15.     $ python3 manage<span></span>.py makemigrations
-   18.     $ python3 manage<span></span>.py createsuperuser (follow instructions)
-   19.     $ python3 manage<span></span>.py runserver
-   20. To login as superuser add /admin to your URL 
+   In settings<span></span>.py add your variables.
+   
+       $ touch .gitignore
+       
+ Add your env<span></span>.py to .gitignore file.
+
+    $ python3 manage.py makemigrations --dry-run
+    $ python3 manage.py migrate --plan 
+    $ python3 manage.py migrate 
+    $ python3 manage.py makemigrations
+    $ python3 manage.py createsuperuser (follow instructions)
+    $ python3 manage.py runserver
+    
+To login as superuser add /admin to your URL 
 
 
--- ----------
-
-
-
-
-
-
-TO deploy to Heroku
+### TO deploy to Heroku
 
  
 If the Heroku command line interface is not already installed in your enviroment then use the folow commands:
@@ -289,6 +320,7 @@ Click "Enable automatic Deploys"
 
 From this point on all "git push" commands will automatically deploy to Heroku
 
+-- ----------
 
 
 
@@ -321,6 +353,8 @@ Note, your config vars in Heroku/settings should be set as follows
 | STRIPE_SECRET_KEY | *your key here*
 | STRIPE_WH_SECRET | *your key here*
 | DISABLE_COLLECTSTATIC | *your key here* 
+
+
 
 4. Create a Procfile in your enviroment containing: gunicorn django_app.wsgi:application
 5. $ pip3 install dj_database_url (sudo pip for Cloud9)

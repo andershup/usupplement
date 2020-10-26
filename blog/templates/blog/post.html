@@ -13,9 +13,8 @@
         <div class="row post-row">
             <div class=" col-md-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h3 class=" site-heading my-4 mt-3"> Welcome to my awesome Blog </h3>
-                    <p class="text-light">We Love Django As much as you do..! &nbsp
-                    </p>
+                    <h3 class=" site-heading my-4 mt-3"> Welcome to our Blog </h3>
+                    
                 </div>
             </div>
         </div>
@@ -31,7 +30,9 @@
                     <h2 class="card-title">{{ post.title }}</h2>
                     <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
                     <p class="card-text">{{post.content|slice:":200" }}</p>
+                    {% if request.user.is_superuser %}
                     <a href="{% url 'add_blog' %}" class="btn btn-primary">Add Blog&rarr;</a>
+                    {% endif %}
                     <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
                 </div>
             </div>
