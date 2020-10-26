@@ -5,7 +5,7 @@
    </button>
    <div class="collapse navbar-collapse" id="navbarNavDropdown">
    <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
+        <li class="nav-item  mt-30">
             <a class="nav-link text-nav text-center" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Choose a category
             </a>
@@ -42,7 +42,7 @@
                   <p class="my-0">My Account</p>
                </div>
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="user-options">
+            <div class="dropdown-menu border-0 bg-transparent text-center" aria-labelledby="user-options">
                {% if request.user.is_authenticated %}
                {% if request.user.is_superuser %} 
                <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>

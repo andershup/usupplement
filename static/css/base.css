@@ -6,7 +6,6 @@ body {
     background: url('/media/pills_high_def.jpg') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px); /*164 is the eventual height of our top header */
-    color: gray; /*default font colour and family for body */
     font-family: 'Sansita Swashed', cursive;
 
 }
@@ -49,7 +48,7 @@ button:focus {
 }
 
 .dropdown-item {
-    color: white;
+    color: black;
 }
 
 /* from Bulma as this will ensure that all font awsome stays centered and consistent size*/
@@ -62,23 +61,11 @@ button:focus {
 }
 
 /* end of Bulma */
-/* for whenever we want to call attention to something */
-.logo-font {
-    width: 10vw;
-    text-transform: uppercase;
-    color: #937666
-}
 
-#title-logo span {
+#title-logo {
     font-size:10vw;
     color:  #313638;
 }
-/* ensures logo only takes up as much space as required */
-.main-logo-link {
-    width: fit-content;
-}
-
-
 
 .shop-now-button {
     

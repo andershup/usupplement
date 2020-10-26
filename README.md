@@ -72,6 +72,8 @@ To see the wireframes [Click here](https://github.com/andershup/usupplement/tree
 
 ## colour schemes
 
+ #E3E7EB
+
 ## TECHNOLOGIES USED
 
 ### Programming Languages
@@ -189,7 +191,7 @@ Profile Model
 
 ## TESTING
 
-* Google Chrome developer tools was used throughout this project. 
+ Google Chrome developer tools was used throughout this project. 
 
 | Code                                                        | Files Tested                                                       | Result |
 | :---------------------------------------------------------- | :----------------------------------------------------------------- | :----- |
@@ -198,6 +200,53 @@ Profile Model
 | Javascript: no major errors ([jshint](https://jshint.com/)) | dashboard.js, base.js                                              | PASS   |
 | Python ([PEP8](https://pep8online.com/))                    | views.py, models.py, forms.py, urls.py, settings.py, test\_\*\*.py | PASS   |
 
+## Manual Testing 
+
+Google Chrome developer tools was used throughout this project to test Desktop, Tablet and Mobile
+Testing was done on all major browsers (Chrome, Firefox, Edge and Firefox) 
+
+### Home
+
+* All Category links functional
+* Only if superuser is logged in does the "Manage Account" and "Create Blog" options show under account in the Navbar
+* When logged in shopping basket continues to show total amount after session has been closed and re-opened.
+* All links from index.html functional and directed correctly.
+* Navbar functional in mobile view with all options and links working.
+* Error message showing if search does not return relevant products.
+
+### Products
+
+* Only when signed in as superuser does the edit/delete products appear. Links tested functional.
+* Clicking on images connecting to product_details page.
+
+### Product Detail
+
+* Adding product brings up success message with order summary.
+* Return to shopping links to home page
+* Quantity limited to 10
+
+### Add Product
+
+* Adding product tested fuctional 
+
+### Edit Product
+
+* Tested fuctional 
+
+### Delete Product 
+
+* Tested functional
+
+### Bag 
+
+* Able to remove product
+* Total, subtotals and delivery cost correct 
+* All links functional
+
+### Profile 
+
+* Shopping cart persisting after user logging out/in.
+* Updating profile functional 
 
 ## DEPLOYMENT
 
@@ -250,7 +299,11 @@ Open Git Bash.
     $ python3 manage.py makemigrations
     $ python3 manage.py createsuperuser (follow instructions)
     $ python3 manage.py runserver
-    
+
+To run the app
+
+    $python3 manage.py runserver
+
 To login as superuser add /admin to your URL 
 
 
@@ -389,63 +442,10 @@ In Amazon AWS/S3 create bucket
     $ python3 manage.py collect static.
 
 
--- ----------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-In Heroku/deploy, link your enviroment.
-
-From settings copy the value of the DATABASE_URL and add to your env<span></span>.py
-   
-Note, your config vars in Heroku/settings should be set as follows
-
-|   KEY    |    VALUE    
-|:------------|:-------------:
-| AWS_ACCESS_KEY_ID | *your key here*
-| AWS_SECRET_ACCESS_KEY | *your key here*
-| DATABASE_URL |   *your key here*                 |                |
-| STRIPE_PUBLIC_KEY | *your key here*
-| STRIPE_SECRET_KEY | *your key here*
-| STRIPE_WH_SECRET | *your key here*
-| DISABLE_COLLECTSTATIC | *your key here* 
-
-
-
-4. Create a Procfile in your enviroment containing: gunicorn django_app.wsgi:application
-5. $ pip3 install dj_database_url (sudo pip for Cloud9)
-6. $ pip3 install psycopg2 (sudo pip for Cloud9)
-7. $ pip3 freeze > requirements.txt
-8. $ python3 manage<span></span>.py makemigrations --dry-run
-9. $ python3 manage<span></span>.py makemigrations
-10. $ python3 manage<span></span>.py migrate --plan 
-11. $ python3 manage<span></span>.py migrate 
-12. $ python3 manage<span></span>.py createsuperuser (follow instructions)
-13. $ python3 manage<span></span>.py createsuperuser
-14. $ In Amazon AWS/S3 create bucket
-15. $ pip3 install django-storages 
-16. $ pip3 insatll boto3
-17. $ touch custom_storage.py (populate is in cloned enviroment)
-18. $ python3 manage<span></span>.py collect static. 
-19. (TO BE COMPLETED)
-
-
+-- ---------
 
 ### NOTES
-Stripe js script included in the base template to allow all fraud detection feature to work throughout the project.
+
 
 ## ATTRIBUTION 
 
