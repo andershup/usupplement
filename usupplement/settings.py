@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.sites', # social media login companies use to create the proper callback URLs
     'allauth', # allauth itself
     'allauth.account', # allows all the basic user account stuff (password reset etc)
-    'allauth.socialaccount', #social login
     'home',
     'products',
     'bag',

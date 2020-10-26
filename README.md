@@ -49,7 +49,6 @@ To see the wireframes [Click here](https://github.com/andershup/usupplement/tree
 
 ### Features
 
-#### Will do:
 * Navbar with the following features:
     * Dropdown menu for mobile view
     * Home button/link 
@@ -57,7 +56,6 @@ To see the wireframes [Click here](https://github.com/andershup/usupplement/tree
     * dropdown category menu
     * account login/sign-up
     * shopping basket
-    * possible checkput button
 * Clearly displayed product images on a scrollable homepage
 * Product images will be links to the option to "add to order".
 * Full user authentication system including email confirmations and user profiless.
@@ -65,20 +63,7 @@ To see the wireframes [Click here](https://github.com/andershup/usupplement/tree
 * postgres relational database.
 * User interaction, with validation, that allow for the creation and editing of models in the backend.
 * A blog function that will allow anyone who is signed in as superuser to author a blog.
- 
 
-
-#### Stretch goals:
-* Special offers in Navbar (buy two, get one free etc)
-* Product size options.
-* Sort selection by rating/price etc.
-* Company Logo.
-* Full Stock Check for all products and sizes.
-* Bootstrap toasts messages. 
-* Google sign-in option.
-* Connected company instagram account. 
-* A “return to top” button is the product list becomes extensive enough.
-* A nootropics product range added.
 
 
 ### ITEMS
@@ -189,7 +174,17 @@ OrderLineItem Model
 | quantity       | IntegerField       |
 | lineitem_total | DecimalField       |
 
+Profile Model
 
+| Field                    | Type               |
+| :-------                 | :----------------- |
+|  user                    | OneToOneField      |
+|default_street_address1   | CharField          |
+|default_street_address1   | CharField          |
+|default_town_or_city      | CharField          |
+|default_postcode          | CharField          |
+|default_country           | CountryField       |
+|default_phone_number      | CharField          |
 
 
 ## TESTING
