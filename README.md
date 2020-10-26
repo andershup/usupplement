@@ -243,6 +243,13 @@ Testing was done on all major browsers (Chrome, Firefox, Edge and Firefox)
 * Total, subtotals and delivery cost correct 
 * All links functional
 
+### Checkout 
+
+* When logged in form is prefilled
+* Order summary correct
+* All links 
+* **name not prefilled**
+
 ### Profile 
 
 * Shopping cart persisting after user logging out/in.
