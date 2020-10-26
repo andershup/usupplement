@@ -1,24 +1,29 @@
 <h1 align="center">Usupplements<br>
 Milestone project 4: e-commerce web application</h1>
 
-
-
-
 ## Table of content 
-* [UX](#ux)
-* [UI](#ui)
-
-
+* [**UX**](#ux)   
+* [**UI**](#ui)
+    * [**Wireframes**](#wireframes)
+    * [**Features**](#features)
+* [**Colour Scheme**](#colour-schemes)
+* [**Technologies used**](#technologies-used)
+    * [**languages**](#programming-languages)
+    * [**Framesworks, Libraries and tools**](#frameworks-libraries-tools)
+    * [**Other**](#other)
+* [DATA](#data)
+    * [DATA Models](#data-models)
+* [Testing](#testing)
+* [Deployment](#Deployment)
+* [Other](#otherr)
 
 -- ----------
 
-## **UX** <a name="ux"></a>
+## **UX** 
 
-Usupplement was designed, built and deployed by Anders Olesen as the final project for the diploma in software development. It is an E-Commerce website aimed at people seeking to supplement their healthy lifestyle. The aim is to provide an approachable site where the user can be prsented with a clear and easy selection of the full range of vitamin types.
+Usupplement was designed, built and deployed by Anders Olesen as the final project for the diploma in software development. It is an E-Commerce website aimed at people seeking to supplement their healthy lifestyle. The aim is to provide an approachable site where the user can be presented with a clear and easy selection of the full range of vitamin types.
 
 The project utilizes Python 3, Django 2.2, JavaScript, and various other frameworks and libraries. Full CRUD functionality is offered throughout features of the project.
-
-
 
 ### USER/OWNER STORIES 
 
@@ -45,9 +50,12 @@ The project utilizes Python 3, Django 2.2, JavaScript, and various other framewo
 
 ## **UI** <a name="ui"></a>
 
-To see the wireframes [Click here](https://github.com/andershup/usupplement/tree/master/wireframes)
+### wireframes 
 
-### Features
+
+[Click here](https://github.com/andershup/usupplement/tree/master/wireframes) 
+
+### Features 
 
 * Navbar with the following features:
     * Dropdown menu for mobile view
@@ -64,15 +72,13 @@ To see the wireframes [Click here](https://github.com/andershup/usupplement/tree
 * User interaction, with validation, that allow for the creation and editing of models in the backend.
 * A blog function that will allow anyone who is signed in as superuser to author a blog.
 
-
-
 ### ITEMS
-### MODELS
 
+## colour schemes 
 
-## colour schemes
-
- #E3E7EB
+* ![#313638](https://placehold.it/15/313638/000000?text=+) #313648 - Navbar color
+* ![#000000](https://placehold.it/15/000000/000000?text=+) #000000 - Font color
+* ![#FFFFFF](https://placehold.it/15/FFFFFF/000000?text=+) #FFFFFF - Font color
 
 ## TECHNOLOGIES USED
 
@@ -83,7 +89,8 @@ To see the wireframes [Click here](https://github.com/andershup/usupplement/tree
 * JavaScript - Frontend functionality
 * Python - Database backend management
 
-### Frameworks, Libraries and tools used
+
+### Frameworks Libraries Tools 
 
 * Bootstrap - Framework to Build the basic structure.
 * Django - Python based framework for the full development of the site.
@@ -120,7 +127,7 @@ Sqlite3 was used during development. For deployment, data tables and data was mi
 
 #### Blog app
 
-Add blog models
+Blog models
 
 | **Field** | **Type**       | **Notes**                   |
 |:--------- |:-------------- |:----------------------------|
@@ -188,7 +195,6 @@ Profile Model
 |default_country           | CountryField       |
 |default_phone_number      | CharField          |
 
-
 ## TESTING
 
  Google Chrome developer tools was used throughout this project. 
@@ -204,6 +210,7 @@ Profile Model
 
 Google Chrome developer tools was used throughout this project to test Desktop, Tablet and Mobile
 Testing was done on all major browsers (Chrome, Firefox, Edge and Firefox) 
+Tested ok on darkmode of tablet and mobile.
 
 ### Home
 
@@ -448,16 +455,12 @@ In Amazon AWS/S3 create bucket
     $ touch custom_storage.py
     $ python3 manage.py collect static.
 
-
 -- ---------
 
-### NOTES
-
+## NOTES
 
 ## ATTRIBUTION 
-
-(TO BE COMPLETED)
-The basic framework of settings<span>.py copied from django documentation 
+ 
 All text from example blogs were copied from [Vitaminbuddy.co.uk](https://www.vitaminbuddy.co.uk/)
 
 ## DISCLAIMER

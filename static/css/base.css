@@ -74,7 +74,7 @@ button:focus {
 }
 
 .read-our-blog {
-    color: #937666;
+    color: black;
 }
 
 .remove-item {
@@ -284,15 +284,6 @@ button:focus {
     border-radius: 0;
 }
 
-.footer {
-    width: 100%;
-    color: white;
-    background-color: #313638;
-}
-.text-footer {
-    padding: 3px 5px 0 10px;
-    margin: 0;
-}
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
@@ -317,6 +308,11 @@ button:focus {
     body {
         height: calc(100vh - 56px);
     }
+
+    .dropdown-item {
+    color: white;
+}
+
     #all-products-link {
         padding-bottom: 17px;
     }
