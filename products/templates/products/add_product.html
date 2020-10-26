@@ -48,12 +48,13 @@
 {% endblock %}
 
 
-{% block postloadjs %} <!--to notify the user what the image will be changed to -->
+{% block postloadjs %} 
     {{ block.super }}
+    <!--notificaton to the user of image file setting -->
     <script type="text/javascript">
         $('#new-image').change(function() {
             var file = $('#new-image')[0].files[0];
-            $('#filename').text(`Image will be set to: ${file.name}`);
+            $('#filename').text(`Image: ${file.name}`);
         });
     </script>
 {% endblock %}

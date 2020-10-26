@@ -45,7 +45,7 @@ The project utilizes Python 3, Django 2.2, JavaScript, and various other framewo
 
 ## **UI** <a name="ui"></a>
 
-See [Wireframes](https://github.com/andershup/usupplement/tree/master/wireframes)
+To see the wireframes [Click here](https://github.com/andershup/usupplement/tree/master/wireframes)
 
 ### Features
 
@@ -64,6 +64,7 @@ See [Wireframes](https://github.com/andershup/usupplement/tree/master/wireframes
 * Live fully functioning payment system.
 * postgres relational database.
 * User interaction, with validation, that allow for the creation and editing of models in the backend.
+* A blog function that will allow anyone who is signed in as superuser to author a blog.
  
 
 
@@ -79,9 +80,10 @@ See [Wireframes](https://github.com/andershup/usupplement/tree/master/wireframes
 * A “return to top” button is the product list becomes extensive enough.
 * A nootropics product range added.
 
-## DATA
+
 ### ITEMS
 ### MODELS
+
 
 ## colour schemes
 
@@ -114,16 +116,80 @@ See [Wireframes](https://github.com/andershup/usupplement/tree/master/wireframes
 * AWS S3 - for cloud storage.
 * miniwebtool for generating secret key for Django.
 
-### Databases
-
-* PostgreSQL 
-* Sqlite3 - backup and early development local database
-
 ### Other 
 
 * Google Fonts
 * Font Awesome - Icons
-* Git and Gitpod - development and version control
+* Git - Version control
+* Gitpod - development
+
+## DATA
+
+### Databases
+
+Sqlite3 was used during development. For deployment, data tables and data was migrated to a PostgreSQL database.
+
+### Data models
+
+#### Blog app
+
+Add blog models
+
+| **Field** | **Type**       | **Notes**                   |
+|:--------- |:-------------- |:----------------------------|
+| title     | Charfield      | Blog title                  |
+| slug      | SlugField      | urls                        |
+| updated_on| DateTimeField  | Auto addition of date       |
+| content   | Textfield      | Article body                |
+| created_on| DateTimeField  | Auto addition of date       |
+| status    | IntegerField   |    default=0                |
+
+#### Products app
+
+Category Model
+
+| **Field**   | **Type**      | **Notes**                   |
+|:------------|:--------------|:--------------------------- |
+|name         | Charfield     | Programmatic name           |
+|friendly_name| Charfield     | Frontend name               |
+
+Product Model
+
+| **Field**  | **Type**      | **Notes**                   |
+|:-----------|:--------------|:--------------------------- |
+|   category | ForeignKey    | Linked to Category model    |
+|    sku     | CharField     | Product identifier          |
+|    name    | Charfield     | Product name                |
+|  first_sold| DateTimeField | When product first sold     |
+|uploaded_by |  Charfield    | Employee name               |
+|description |   TextField   | Product description         |
+| price      |DecimalField   |  Product price              |
+|image       |  ImageField   | Product ImageField          |
+
+Order Model
+
+| Field           | Type      |
+| :-------------- | :-------- |
+| full_name       | CharField |
+| phone_number    | CharField |
+| country         | CharField |
+| postcode        | CharField |
+| town_or_city    | CharField |
+| street_address1 | CharField |
+| street_address2 | CharField |
+| county          | CharField |
+| date            | DateField |
+
+OrderLineItem Model
+
+| Field          | Type               |
+| :-------       | :----------------- |
+| order          | ForeignKey(Order)  |
+| product        | ForeignKey(Product)|       |
+| quantity       | IntegerField       |
+| lineitem_total | DecimalField       |
+
+
 
 
 ## TESTING
@@ -320,6 +386,14 @@ Click "Enable automatic Deploys"
 
 From this point on all "git push" commands will automatically deploy to Heroku
 
+In Amazon AWS/S3 create bucket
+    
+    $ pip3 install django-storages
+    $ pip3 insatll boto3
+    $ touch custom_storage.py
+    $ python3 manage.py collect static.
+
+
 -- ----------
 
 
@@ -381,7 +455,8 @@ Stripe js script included in the base template to allow all fraud detection feat
 ## ATTRIBUTION 
 
 (TO BE COMPLETED)
-The basic framework of settings.py copied from django
+The basic framework of settings<span>.py copied from django documentation 
+All text from example blogs were copied from [Vitaminbuddy.co.uk](https://www.vitaminbuddy.co.uk/)
 
 ## DISCLAIMER
 

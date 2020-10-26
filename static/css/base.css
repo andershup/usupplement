@@ -35,12 +35,21 @@ button:focus {
     padding: 1px 0;
 }
 
+.text-nav:hover {
+ color: gainsboro;
+}
+
+
 .search-box {
     background-color: white;
 }
 
 .fa-search {
     color:  #313638;
+}
+
+.dropdown-item {
+    color: white;
 }
 
 /* from Bulma as this will ensure that all font awsome stays centered and consistent size*/
@@ -55,11 +64,13 @@ button:focus {
 /* end of Bulma */
 /* for whenever we want to call attention to something */
 .logo-font {
+    width: 10vw;
     text-transform: uppercase;
     color: #937666
 }
 
 #title-logo span {
+    font-size:10vw;
     color:  #313638;
 }
 /* ensures logo only takes up as much space as required */
@@ -73,6 +84,10 @@ button:focus {
     
     color: white;
     min-width: 160px;
+}
+
+.read-our-blog {
+    color: #937666;
 }
 
 .remove-item {
@@ -314,5 +329,8 @@ button:focus {
 
     body {
         height: calc(100vh - 56px);
+    }
+    #all-products-link {
+        padding-bottom: 17px;
     }
 }

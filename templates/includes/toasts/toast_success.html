@@ -27,7 +27,7 @@
                         <div class="col-9">
                             <p class="my-0"><strong>{{ item.product.name }}</strong></p>
                             <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
-                            <p class="my-0 float-right">${{ item.product.price | calc_subtotal:item.quantity }}</p>
+                            <p class="my-0 float-right">£{{ item.product.price | calc_subtotal:item.quantity }}</p>
                             <p>Subtotal:</p>
                             <form method="POST" action="{% url 'remove_from_bag' item.item_id %}" class="form mb-2">
                                 {% csrf_token %}
@@ -41,7 +41,7 @@
                 <div class="col">
                     <strong><p class="mt-3 mb-1 text-black">
                         Total: 
-                        <span class="float-right">${{ total|floatformat:2 }}</span>
+                        <span class="float-right">£{{ total|floatformat:2 }}</span>
                     </p></strong>
                     <a href="{% url 'view_bag' %}" class="btn btn-black btn-block rounded-0">
                         <span class="text-uppercase">Go To Secure Checkout</span>
@@ -56,7 +56,6 @@
 </div>
 <!--Javascript to enable removal of item from toast-->
 <script type="text/javascript">
-
     $('.remove-item').click(function(e) {
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr('id').split('remove_')[1];
