@@ -19,12 +19,15 @@ def cache_checkout_data(request):
     """ Before the confirm card payment is called in the JS we will make 
     a post request to the view and give it the client secret key"""
     try:
-        # we split at the word secret so the first part wil be the payment intent id, stored in pid
+        # we split at the word secret so the first part will be the payment intent id, stored in pid
         pid = request.POST.get('client_secret').split('_secret')[0]
-        stripe.api_key = settings.STRIPE_SECRET_KEY #set up stripe with the secret key so we can modify the payment intent
-        stripe.PaymentIntent.modify(pid, metadata={ #to do this we call modify on paymentintent. give it the pid and add our metadata bolow:
-            'bag': json.dumps(request.session.get('bag', {})), #we add json dump of their shopping bag
-            'save_info': request.POST.get('save_info'), #whether or not they wanted to save their information
+        # set up stripe with the secret key so we can modify the payment intent
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        #to do this we call modify on paymentintent. give it the pid and add our metadata bolow:
+        stripe.PaymentIntent.modify(pid, metadata={ 
+            # Add json dump of user shopping bag
+            'bag': json.dumps(request.session.get('bag', {})),
+            'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
         return HttpResponse(status=200)
@@ -34,12 +37,13 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 def checkout(request):
+    """ A view for handling payment submit """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     bag = request.session.get('bag', {})
     for item_id in bag:
         print(item_id)
-    if request.method == 'POST': #from our payment submit button
+    if request.method == 'POST': 
         bag = request.session.get('bag', {})
         form_data = {
             'full_name': request.POST['full_name'],
@@ -52,13 +56,15 @@ def checkout(request):
             'street_address2': request.POST['street_address2'],
             'county': request.POST['county'],
         }
-        order_form = OrderForm(form_data) #instance of the form using the form data
+        # Instance of the form using the form data
+        order_form = OrderForm(form_data) 
         if order_form.is_valid(): 
-            order = order_form.save(commit=False) #to get the order number for line 48 checkout success.
+            # Save the order and commit False to avoid multiple commits
+            order = order_form.save(commit=False) 
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
-            order.save() #we have commit=False above to avoid multiple commits
+            order.save() 
             for item_id, item_data in bag.items():
                 print(item_id)
                 try:
@@ -79,32 +85,35 @@ def checkout(request):
                     return redirect(reverse('view_bag'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number])) #pass the order number as an argument for the url
+            #pass the order number as an argument for the url
+            return redirect(reverse('checkout_success', args=[order.order_number])) 
 
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
 
 
-    else: #to handle the GET request
-
+    else: 
+             #this will prevent people from manually acessing the url by typing /checkout
             bag = request.session.get('bag', {})
-            if not bag: #this will prevent people from manually acessing the url by typing /checkout
+            if not bag:
                 messages.error(request, "There's nothing in your bag at the moment")
                 return redirect(reverse('products'))
-
-            current_bag = bag_contents(request) #we get a python dictionary returned so can display here. current_bag so not overwrite bag.
-            total = current_bag['grand_total'] #get the grand total key out of the current bag.
-            stripe_total = round(total * 100) #round to zero decimal place since stripe requires the amount to be an integer.
+            #we get a python dictionary returned so can display here. current_bag so not overwrite bag.
+            current_bag = bag_contents(request) 
+            total = current_bag['grand_total']
+            # round to zero decimal place since stripe requires the amount to be an integer 
+            stripe_total = round(total * 100) 
             stripe.api_key = stripe_secret_key
             intent = stripe.PaymentIntent.create( 
-            #Create the payment intent giving it the abount and currency
+            #Create the payment intent giving it the amount and currency
                 amount=stripe_total,
                 currency=settings.STRIPE_CURRENCY,
             )
 
             if request.user.is_authenticated:
-                try: #prefill their order form for them
+                #prefill user form 
+                try: 
                     profile = UserProfile.objects.get(user=request.user)
                     order_form = OrderForm(initial={
                         'full_name': profile.user.get_full_name(),
@@ -117,18 +126,19 @@ def checkout(request):
                         'street_address2': profile.default_street_address2,
                         'county': profile.default_county,
                     })
+                #if not authenticated render empty form 
                 except UserProfile.DoesNotExist:
-                    order_form = OrderForm() #if not authenticated render empty form 
+                    order_form = OrderForm() 
             else:
                 order_form = OrderForm()
 
             
             
-            
-            template = 'checkout/checkout.html' #we create the template and the context containing the order form
+            #we create the template and the context containing the order form
+            template = 'checkout/checkout.html' 
             context = {
                 'order_form': order_form,
-                'stripe_public_key': stripe_public_key, #variables from above
+                'stripe_public_key': stripe_public_key, 
                 'client_secret': intent.client_secret,
             }
 
@@ -141,11 +151,11 @@ def checkout_success(request, order_number):
     """
     #find out if the user ticked to save info 
     save_info = request.session.get('save_info') 
-    order = get_object_or_404(Order, order_number=order_number) #same as order number line 85
+    order = get_object_or_404(Order, order_number=order_number) 
 
-    if request.user.is_authenticated: # but only if authenticated
-            #without this if statement it would break payments for anonymous users
-        profile = UserProfile.objects.get(user=request.user) #we attach user profile info as the order success 
+    if request.user.is_authenticated: 
+        #without this if statement it would break payments for anonymous users
+        profile = UserProfile.objects.get(user=request.user)
         # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
@@ -177,5 +187,4 @@ def checkout_success(request, order_number):
     context = {
         'order': order,
     }
-    #render template
     return render(request, template, context)

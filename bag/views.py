@@ -1,18 +1,17 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from products.models import Product
-# Create your views here.
 
 def view_bag(request):
     """ A view that renders the bag contents page """
-
     return render(request, 'bag/bag.html')
 
 def add_to_bag(request, item_id):
-    """ Add a quantity of the specified product to the shopping bag """
-
-    product = Product.objects.get(pk=item_id) #For showing message "success" below.
-    quantity = int(request.POST.get('quantity')) # First thing is to get the quantity from the form. int cause it comes as a string.
+    """ Add quantity of the specified product to the shopping bag """
+    #For showing message "success" below
+    product = Product.objects.get(pk=item_id) 
+    # Get the quantity from the form. Use int as it comes as a string.
+    quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     bag = request.session.get('bag', {})
 
@@ -27,7 +26,7 @@ def add_to_bag(request, item_id):
     return redirect(redirect_url)
 
 def remove_from_bag(request, item_id):
-    """Remove the item from the shopping bag"""
+    """A view for removing the item from the shopping bag"""
     product = Product.objects.get(pk=item_id)
     bag = request.session.get('bag', {})
     try:

@@ -11,7 +11,6 @@ from .forms import ProductForm
 def all_products(request):
     """ A view to show all products on home page """
 
-    
     products = Product.objects.all()
     # To return all products from the database
     query = None

@@ -52,7 +52,7 @@
     <!--notificaton to the user of image file setting -->
     <script type="text/javascript">
         $('#new-image').change(function() {
-            var file = $('#new-image')[0].files[0];
+            let file = $('#new-image')[0].files[0];
             $('#filename').text(`Image: ${file.name}`);
         });
     </script>

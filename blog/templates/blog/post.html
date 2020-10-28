@@ -9,11 +9,11 @@
 {% block content %}
 <header class="masthead">
     <div class="overlay"></div>
-    <div class="container">
+    <div class="container blog-container">
         <div class="row post-row">
-            <div class=" col-md-8 col-md-10 mx-auto">
+            <div class=" col-12 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h3 class=" site-heading my-4 mt-3"> Welcome to our Blog </h3>
+                    <h3 class=" site-heading"> Welcome to our Blog </h3>
                     
                 </div>
             </div>
@@ -21,19 +21,19 @@
     </div>
 </header>
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
         <!-- Blog Entries Column -->
-        <div class="col-md-8 mt-3 left">
+        <div class="col-10 mt-3 left">
             {% for post in post_list %}
             <div class="card mb-4">
                 <div class="card-body">
                     <h2 class="card-title">{{ post.title }}</h2>
-                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+                    <p class="card-text text-muted h4">{{ post.author }} | {{ post.created_on}} </p>
                     <p class="card-text">{{post.content|slice:":200" }}</p>
                     {% if request.user.is_superuser %}
-                    <a href="{% url 'add_blog' %}" class="btn btn-primary">Add Blog&rarr;</a>
+                    <a href="{% url 'add_blog' %}" class="btn btn-black">Add Blog&rarr;</a>
                     {% endif %}
-                    <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+                    <a href="{% url 'post_detail' post.slug  %}" class="btn btn-black">Read More &rarr;</a>
                 </div>
             </div>
             {% endfor %}

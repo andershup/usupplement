@@ -28,8 +28,6 @@ button:focus {
 }
 
 .text-nav {
-    /*color: #937666;
-    color: #EDF6F9;*/
     color: white;
     padding: 1px 0;
 }
@@ -75,6 +73,7 @@ button:focus {
 
 .read-our-blog {
     color: black;
+    border: #343a40 !important;
 }
 
 .remove-item {
@@ -83,7 +82,7 @@ button:focus {
 
 
 .btn-black {
-    background: black;
+    background: #313638;
     color: white;
 }
 
@@ -284,6 +283,39 @@ button:focus {
     border-radius: 0;
 }
 
+
+
+/* pad the top a bit when navbar is collapsed on mobile. This was copied from Code Institute lesson*/
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 56px;
+    }
+
+    body {
+        height: calc(100vh - 56px);
+    }
+
+    .dropdown-item {
+    color: white;
+    }
+    .text-nav {
+        font-size: 30px;
+    }
+
+    #title-logo {
+        padding-top: 30px;
+        padding-bottom: 10px;
+    }
+
+    .read-our-blog {
+        font-size: 20px;
+    }
+
+    #all-products-link {
+        padding-bottom: 17px;
+    }
+}
+
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
     .fixed-top-desktop-only {
@@ -299,21 +331,40 @@ button:focus {
     }
 }
 
-/* pad the top a bit when navbar is collapsed on mobile. This was copied from Code Institute lesson*/
-@media (max-width: 991px) {
-    .header-container {
-        padding-top: 56px;
+  @media (min-width: 768px) and (max-width: 1024px) {
+       .text-nav {
+        font-size: 30px;
     }
-
-    body {
-        height: calc(100vh - 56px);
-    }
-
     .dropdown-item {
+    font-size: 27px;
     color: white;
-}
+    background-color: #313638;
+    }
 
-    #all-products-link {
-        padding-bottom: 17px;
+    #title-logo {
+        padding-top: 30px;
+        padding-bottom: 10px;
+    }
+
+    .read-our-blog {
+        font-size: 35px;
+    }
+    .shop-now-button {
+    
+    color: white;
+    min-width: 160px;
+    font-size: 35px;
+    }
+    .blog-container{
+        margin-top: 50px
+    }
+    .blog-col {
+        padding-top:10px;
+        padding-bottom: 10px;
+        margin-top:50px;
+    }
+    .card-text {
+        font-size: 30px;
     }
 }
+  

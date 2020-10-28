@@ -6,10 +6,13 @@
 */
 // variables camel cased for consistency with python
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1); // script elements contain their value so .text() to retrieve
-var clientSecret = $('#id_client_secret').text().slice(1, -1); // slice to get rid of the quotation marks
-var stripe = Stripe(stripePublicKey); // stripe script in base template so to set up stripe just need create variable using the strope public key.
-var elements = stripe.elements(); // create an instance of stripe elements 
-var style = { //card elements can accept style. Also from stripe doc
+// slice to get rid of the quotation marks
+var clientSecret = $('#id_client_secret').text().slice(1, -1); 
+// stripe script in base template so to set up stripe just need create variable using the stripe public key
+var stripe = Stripe(stripePublicKey); 
+// create an instance of stripe elements 
+var elements = stripe.elements(); 
+var style = {
     base: {
         color: '#A52A2A',
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
@@ -20,12 +23,12 @@ var style = { //card elements can accept style. Also from stripe doc
         }
     },
     invalid: {
-        color: '#dc3545', //bootstraps danger class color
+        color: '#dc3545', 
         iconColor: '#dc3545'
     }
 };
 
-var card = elements.create('card', {style: style}); //not sure it style is added here or on the mount.
+var card = elements.create('card', {style: style}); 
 card.mount('#card-element'); // mount it to the elemnt in checkout.html
 
 /* Handle realtime validation errors on the card element
@@ -56,7 +59,7 @@ form.addEventListener('submit', function(ev) {
     card.update({ 'disabled': true});
     $('#submit-button').attr('disabled', true);
     // fade out the form when user clicks submit
-    $('#payment-form').fadeToggle(100); //THESE ARE NOT FUNCTIONING
+    $('#payment-form').fadeToggle(100); 
     $('#loading-overlay').fadeToggle(100);
     // Stripe method to send card info securely to stripe
     // We get the boolean value of the 'save info' box
@@ -113,7 +116,7 @@ form.addEventListener('submit', function(ev) {
                 $('#submit-button').attr('disabled', false);
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
-                    form.submit(); //we can comment out so checkout view fail to see if webhook handler will catch the payment succeeded and do it for us.
+                    form.submit();
                 }
             }
         });
