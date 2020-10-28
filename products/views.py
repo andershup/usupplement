@@ -64,8 +64,8 @@ def product_detail(request, product_id):
 @login_required # imported above. django will check if user is logged in first before executing the view
 def add_product(request):
     """ Add a product to the store """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only staff and superusers can do that.')
+    if not request.user.is_staff:
+        messages.error(request, 'Sorry, staff access only!')
         return redirect(reverse('home'))
 
     if request.method == 'POST':
@@ -126,16 +126,13 @@ def delete_product(request, product_id):
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
 
-
+@login_required 
 def summary(request, product_id):
     """ summary of products added or edited  """
 
     product = get_object_or_404(Product, pk=product_id)
-    
-    # product singular to return on product with that id.
     context = {
         'product': product,
-    # So our products wil be available in the template
     }
 
     return render(request, 'products/summary.html', context)

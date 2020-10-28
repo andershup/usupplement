@@ -30,7 +30,7 @@
                     <h2 class="card-title">{{ post.title }}</h2>
                     <p class="card-text text-muted h4">{{ post.author }} | {{ post.created_on}} </p>
                     <p class="card-text">{{post.content|slice:":200" }}</p>
-                    {% if request.user.is_superuser %}
+                    {% if request.user.is_staff %}
                     <a href="{% url 'add_blog' %}" class="btn btn-black">Add Blog&rarr;</a>
                     {% endif %}
                     <a href="{% url 'post_detail' post.slug  %}" class="btn btn-black">Read More &rarr;</a>
