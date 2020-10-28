@@ -65,7 +65,7 @@ def product_detail(request, product_id):
 def add_product(request):
     """ Add a product to the store """
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
+        messages.error(request, 'Sorry, only staff and superusers can do that.')
         return redirect(reverse('home'))
 
     if request.method == 'POST':
@@ -73,7 +73,7 @@ def add_product(request):
         if form.is_valid():
             product = form.save()
             messages.success(request, 'Successfully added product!')
-            return redirect(reverse('product_detail', args=[product.id]))
+            return redirect(reverse('summary', args=[product.id]))
         else:
             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
     else:
@@ -93,14 +93,13 @@ def edit_product(request, product_id):
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
 
-    product = get_object_or_404(Product, pk=product_id) #prefilling the form 
-    if request.method == 'POST': #the press to update post
-        form = ProductForm(request.POST, request.FILES, instance=product) #instanciating the product form using the forms and we tell it the specific instance 
-        # we would like to update (the product obtained aboves)
+    product = get_object_or_404(Product, pk=product_id) 
+    if request.method == 'POST': 
+        form = ProductForm(request.POST, request.FILES, instance=product) 
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated product!')
-            return redirect(reverse('product_detail', args=[product.id]))
+            return redirect(reverse('summary', args=[product.id]))
         else:
             messages.error(request, 'Failed to update product. Please ensure the form is valid.')
     else:
@@ -126,3 +125,17 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
+
+
+def summary(request, product_id):
+    """ summary of products added or edited  """
+
+    product = get_object_or_404(Product, pk=product_id)
+    
+    # product singular to return on product with that id.
+    context = {
+        'product': product,
+    # So our products wil be available in the template
+    }
+
+    return render(request, 'products/summary.html', context)
