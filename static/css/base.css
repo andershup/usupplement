@@ -36,7 +36,6 @@ button:focus {
  color: gainsboro;
 }
 
-
 .search-box {
     background-color: white;
 }
@@ -80,7 +79,6 @@ button:focus {
     cursor: pointer;
 } 
 
-
 .btn-black {
     background: #313638;
     color: white;
@@ -98,7 +96,6 @@ button:focus {
     background: black;
     color: white !important;
 }
-
 
 .btn-black:hover,
 .btn-black:active,
@@ -282,8 +279,6 @@ button:focus {
     border-color: #dc3545;
     border-radius: 0;
 }
-
-
 
 /* pad the top a bit when navbar is collapsed on mobile. This was copied from Code Institute lesson*/
 @media (max-width: 991px) {

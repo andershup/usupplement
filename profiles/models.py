@@ -12,9 +12,8 @@ class UserProfile(models.Model):
     A user profile model for maintaining default
     delivery information and order history
     """
-    # onetoone is just like a foreign key except that it specifies that each user can only have one field
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # delivery fields we want the user to be able to provide defaults for
+    # delivery fields we want the user to be able to provide defaults
     # these can come directly from the order model and we want all fields to be optional
     default_street_address1 = models.CharField(max_length=80, null=True, blank=True)
     default_street_address2 = models.CharField(max_length=80, null=True, blank=True)

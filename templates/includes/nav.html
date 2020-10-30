@@ -1,82 +1,72 @@
-<nav class="navbar navbar-expand-lg">
-   <a class="navbar-brand text-nav" href="{% url 'home' %}">Home</a>
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-   <span class="navbar-toggler-icon"></span>
-   </button>
-   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-   <ul class="navbar-nav mr-auto">
-        <li class="nav-item  mt-30">
-            <a class="nav-link text-nav text-center" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Choose a category
-            </a>
-            <div class="bg-transparent text-center dropdown-menu border-0" aria-labelledby="all-products-link">
-               <a href="{% url 'products' %}" class="dropdown-item">All supplements</a>
-               <a href="{% url 'products' %}?category=multi_vitamins" class="dropdown-item">Multi Vitamins</a>
-               <a href="{% url 'products' %}?category=vitamin_ab" class="dropdown-item ">Vitamin a/b</a>
-               <a href="{% url 'products' %}?category=vitamin_cd" class="dropdown-item ">Vitamin c/d</a>
-               <a href="{% url 'products' %}?category=vitamin_e" class="dropdown-item">Vitamin e</a>
-            </div>
-         </li>
-    </ul>
-      <ul class="mb-0">
-      <form method="GET" action="{% url 'products' %}">
-         <div class="input-group w-100">
-            <input class="form-control  rounded-8 search-box" type="text" name="q" placeholder="Search our supplements">
-            <div class="input-group-append"> 
-               <button class="form-control btn border search-box rounded-8" type="submit">
-               <span class="icon">
-               <i class="fas fa-search"></i>
-               </span>
-               </button>
-            </div>
-         </div>
-      </form>
-      </ul>
-      
-      
-    <ul class="navbar-nav ml-auto">
-         <li class="list-inline-item dropdown">
-            <a class="nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="100,700">
-               <div class="text-center text-nav">
-                  <div><i class="fas fa-user fa-md"></i></div>
-                  <p class="my-0">My Account</p>
-               </div>
-            </a>
-            <div class="dropdown-menu border-0 bg-transparent text-center" aria-labelledby="user-options">
-               {% if request.user.is_authenticated %}
-               {% if request.user.is_staff %} 
-               <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
-               <a href="{% url 'add_blog' %}" class="dropdown-item">Create Blog</a>
-               {% endif %}
-               <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
-               <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-               {% else %}
-               <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-               <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-               {% endif %}
-            </div>
-         </li>
-        
-        
-        
-        
-         <li class="list-inline-item">
-            <a class="{% if grand_total %}text-info font-weight-bold{% else %}{% endif %} nav-link" href="{% url 'view_bag' %}">
-               <div class="text-center text-nav">
-                  <div><i class="fas fa-shopping-bag fa-md"></i></div>
-                  <p class="my-0">
-                     {% if grand_total %}
-                     £{{ grand_total|floatformat:2 }} 
-                     {% else %}
-                     $0.00
-                     {% endif %}
-                  </p>
-               </div>
-            </a>
-         </li>
-         
-         </ul>
-      
-      
-   </div>
-</nav>
+<header class="container-fluid fixed-top px-0">
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand text-nav" href="{% url 'home' %}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item mt-30">
+                    <a class="nav-link text-nav text-center" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose a category
+                    </a>
+                    <div class="bg-transparent text-center dropdown-menu border-0" aria-labelledby="all-products-link">
+                        <a href="{% url 'products' %}" class="dropdown-item">All supplements</a>
+                        <a href="{% url 'products' %}?category=multi_vitamins" class="dropdown-item">Multi Vitamins</a>
+                        <a href="{% url 'products' %}?category=vitamin_ab" class="dropdown-item">Vitamin a/b</a>
+                        <a href="{% url 'products' %}?category=vitamin_cd" class="dropdown-item">Vitamin c/d</a>
+                        <a href="{% url 'products' %}?category=vitamin_e" class="dropdown-item">Vitamin e</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="mb-0">
+                <form method="GET" action="{% url 'products' %}">
+                    <div class="input-group w-100">
+                        <input class="form-control rounded-8 search-box" type="text" name="q" placeholder="Search our supplements" />
+                        <div class="input-group-append">
+                            <button class="form-control btn border search-box rounded-8" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="list-inline-item dropdown">
+                    <a class="nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="100,700">
+                        <div class="text-center text-nav">
+                            <div><i class="fas fa-user fa-md"></i></div>
+                            <p class="my-0">My Account</p>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu border-0 bg-transparent text-center" aria-labelledby="user-options">
+                        {% if request.user.is_authenticated %} {% if request.user.is_staff %}
+                        <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
+                        <a href="{% url 'add_blog' %}" class="dropdown-item">Create Blog</a>
+                        {% endif %}
+                        <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
+                        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                        {% else %}
+                        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                        {% endif %}
+                    </div>
+                </li>
+
+                <li class="list-inline-item">
+                    <a class="{% if grand_total %}text-info font-weight-bold{% else %}{% endif %} nav-link" href="{% url 'view_bag' %}">
+                        <div class="text-center text-nav">
+                            <div><i class="fas fa-shopping-bag fa-md"></i></div>
+                            <p class="my-0">
+                                {% if grand_total %} £{{ grand_total|floatformat:2 }} {% else %} $0.00 {% endif %}
+                            </p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

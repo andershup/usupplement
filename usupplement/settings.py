@@ -32,8 +32,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['usupplement.herokuapp.com', 'localhost'] 
-# ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME', 'localhost')]#local host so gitpod will still work
-
 
 # Application definition
 
@@ -44,9 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites', # social media login companies use to create the proper callback URLs
-    'allauth', # allauth itself
-    'allauth.account', # allows all the basic user account stuff (password reset etc)
+    'django.contrib.sites', 
+    'allauth',
+    'allauth.account',
     'home',
     'products',
     'bag',

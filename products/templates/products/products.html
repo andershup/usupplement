@@ -1,88 +1,86 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block extra_title %}
-/products
-{% endblock %}
-
+{% extends "base.html" %} 
+{% load static %} 
+{% block extra_title %} /products {% endblock %} 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %} 
+{% block content %}
+<div class="overlay"></div>
+<!--full page overlay to cover up the background image-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col text-center mt-3">
+            <h2 class="logo-font">Products</h2>
+            <hr class="w-50 mb-1" />
         </div>
     </div>
-{% endblock %} 
+    <div class="row">
+        <div class="product-container col-10 offset-1">
+            <div class="row mt-1 mb-2"></div>
+            <div class="row">
+                {% for product in products %}
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                    <div class="card h-100 border-0">
+                        {% if product.image %}
+                        <a href="{% url 'product_detail' product.id %}">
+                            <!--product.id not _id because in template we are working with django object _id in the veiw-->
+                            <!--using bootstrap card and classes--><!-- using the image field's url attribute if exists-->
+                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" />
+                        </a>
+                        {% else %}
+                        <a href="{% url 'product_detail' product.id %}">
+                            <!--we still want even if dont have image-->
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" />
+                        </a>
+                        {% endif %}
+                        <div class="card-body pb-0">
+                            <p class="mb-0">{{ product.name }}</p>
+                        </div>
+                        <div class="card-footer bg-white pt-0 border-0 text-left">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
 
-{% block content %}
-    <div class="overlay"></div> <!--full page overlay to cover up the background image-->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col text-center mt-3">
-                <h2 class="logo-font">Products</h2>
-                <hr class="w-50 mb-1">
-            </div>
-        </div>
-        <div class="row">
-            <div class="product-container col-10 offset-1">
-                <div class="row mt-1 mb-2"></div>
-                <div class="row">
-                    {% for product in products %}
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card h-100 border-0">
-                                {% if product.image %}
-                                <a href="{% url 'product_detail' product.id %}">
-                                    <!--product.id not _id because in template we are working with django object _id in the veiw-->
-                                    <!--using bootstrap card and classes--><!-- using the image field's url attribute if exists-->
-                                    <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                                </a>
-                                {% else %}
-                                <a href="{% url 'product_detail' product.id %}"> <!--we still want even if dont have image-->
-                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                                </a>
-                                {% endif %}
-                                <div class="card-body pb-0">
-                                    <p class="mb-0">{{ product.name }}</p>
-                                </div>
-                                <div class="card-footer bg-white pt-0 border-0 text-left">
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="lead mb-0 text-left font-weight-bold">£{{ product.price }}</p>
-                                            
-                                            {% if request.user.is_superuser %}
-                                                <small class="ml-3">
-                                                    <a href="{% url 'edit_product' product.id %}">Edit</a> | 
-                                                    <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
-                                                </small>
-                                            {% endif %}
-                                        </div>
-                                    </div>
+                                    {% if request.user.is_superuser %}
+                                    <small class="ml-3">
+                                        <a href="{% url 'edit_product' product.id %}">Edit</a> |
+                                        <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+                                    </small>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
-                        <!-- if forloop.counter copied from Code Institute lesson-->
-                        {% if forloop.counter|divisibleby:1 %}
-                            <div class="col-12 d-sm-none mb-5"> <!--mobile-->
-                                <hr> <!--adding seperator-->
-                            </div>
-                        {% endif %}                        
-                        {% if forloop.counter|divisibleby:2 %} <!--tablet-->
-                            <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                                <hr>
-                            </div>
-                        {% endif %}
-                        {% if forloop.counter|divisibleby:3 %} <!--desktop-->
-                            <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                                <hr>
-                            </div>
-                        {% endif %}
-                        {% if forloop.counter|divisibleby:4 %} <!--you could make this one the desktop for four in a row-->
-                            <div class="col-12 d-none d-xl-block mb-5">
-                                <hr>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                    </div>
                 </div>
+                <!-- if forloop.counter copied from Code Institute lesson-->
+                {% if forloop.counter|divisibleby:1 %}
+                <div class="col-12 d-sm-none mb-5">
+                    <!--mobile-->
+                    <hr />
+                    <!--adding seperator-->
+                </div>
+                {% endif %} {% if forloop.counter|divisibleby:2 %}
+                <!--tablet-->
+                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                    <hr />
+                </div>
+                {% endif %} {% if forloop.counter|divisibleby:3 %}
+                <!--desktop-->
+                <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                    <hr />
+                </div>
+                {% endif %} {% if forloop.counter|divisibleby:4 %}
+                <!--you could make this one the desktop for four in a row-->
+                <div class="col-12 d-none d-xl-block mb-5">
+                    <hr />
+                </div>
+                {% endif %} {% endfor %}
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

@@ -15,7 +15,7 @@ class OrderForm(forms.ModelForm):
         Add placeholders and classes, remove auto-generated
         labels and set autofocus on first field
         """
-        super().__init__(*args, **kwargs)  #we call the default init method to set up the form as it would be by default
+        super().__init__(*args, **kwargs)
         placeholders = {
             'full_name': 'Full Name',
             'email': 'Email Address',
@@ -28,13 +28,16 @@ class OrderForm(forms.ModelForm):
             'county': 'County',
         }
 
-        self.fields['full_name'].widget.attrs['autofocus'] = True #autofocus so cursor start in this field
-        for field in self.fields: #we itterate through form fields adding adding a start if required
+        self.fields['full_name'].widget.attrs['autofocus'] = True
+        # iterate through fiels adding star to required fields
+        for field in self.fields:
             if self.fields[field].required:
-                placeholder = f'{placeholders[field]} *' #adding star
+                placeholder = f'{placeholders[field]} *'
             else:
                 placeholder = placeholders[field]
-            self.fields[field].widget.attrs['placeholder'] = placeholder #setting all the placeholder att to values in dic above
-            self.fields[field].widget.attrs['class'] = 'stripe-style-input' #Stripe's style input class added. See checkout.css
-            self.fields[field].label = False #removing labels as we now have placeholder set..
-            # try this with just the labels .....
+            # setting all the placeholder att to values in dic above
+            self.fields[field].widget.attrs['placeholder'] = placeholder
+            # Stripe's style input class added. See checkout.css
+            self.fields[field].widget.attrs['class'] = 'stripe-style-input'
+            # removing labels as we now have placeholder set..
+            self.fields[field].label = False

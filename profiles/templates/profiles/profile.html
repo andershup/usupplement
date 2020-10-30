@@ -49,9 +49,10 @@
                                 <tr>
                                     <td>
                                         <a href="{% url 'order_history' order.order_number %}"
-                                        title="{{ order.order_number }}"> <!--title so if hover over you can see the whole order numberBUT YOU DONT HAVE ORDER SUMMARY-->
-                                            {{ order.order_number|truncatechars:6 }} <!-- to keep things condensed we will pipe the order number into the built-in 
+                                        title="{{ order.order_number }}"> 
+                                        <!-- to keep things condensed we pipe order number into the built-in 
                                             truncate characters filter to limit it to six charecters-->
+                                            {{ order.order_number|truncatechars:6 }} 
                                         </a>
                                     </td>
                                     <td>{{ order.date }}</td>
