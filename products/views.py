@@ -72,13 +72,12 @@ def add_product(request):
             return redirect(reverse('summary', args=[product.id]))
         else:
             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
-    else:
-        form = ProductForm()
 
+    form = ProductForm()
     template = 'products/add_product.html'
     context = {
-    'form': form,
-        }
+        'form': form
+    }
 
     return render(request, template, context)
 
