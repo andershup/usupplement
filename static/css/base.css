@@ -68,11 +68,13 @@ button:focus {
     
     color: white;
     min-width: 160px;
+    font-size: 3vw;
 }
 
 .read-our-blog {
     color: black;
     border: #343a40 !important;
+    font-size: 3vw;
 }
 
 .remove-item {
@@ -300,10 +302,6 @@ button:focus {
     #title-logo {
         padding-top: 30px;
         padding-bottom: 10px;
-    }
-
-    .read-our-blog {
-        font-size: 20px;
     }
 
     #all-products-link {
