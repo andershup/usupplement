@@ -83,6 +83,7 @@ The project utilizes Python 3, Django 2.2, JavaScript, and various other framewo
 * A “return to top” button is the product list becomes extensive enough.
 * A fitness suppliments range added.
 * Delete Blog 
+* Edit Blog
 * Default product image upload if blank
 
 ### ITEMS
